@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	   <link rel="stylesheet" type="text/css" href="estilo.css">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>
+
+    </title>
+</head>
+<body>
+<header class="barra">
+      <button class="menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a class="barra-logo" href="index.html" aria-label="Cinefilos">
+        <img src="imagenes/logo.png" alt="Cinefilos" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span>CINE<strong>FILOS</strong><small>&reg;</small></span>
+      </a>
+
+      <button class="boton-buscar-mobile" type="button" aria-label="Abrir buscador" aria-expanded="false"></button>
+
+      <nav class="barra-nav" aria-label="Secciones principales">
+        <div class="buscador-mobile-menu">
+          <input type="search" placeholder="Buscar" aria-label="Buscar">
+          <button type="submit" aria-label="Buscar">Ir</button>
+        </div>
+     
+        <a href="novedades.html">Novedades</a>
+        <a href="resenas.html">Reseñas</a>
+        <a href="entrevista.html">Entrevistas</a>
+        <a href="#recomendados">Recomendados</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="Ranking Semanal.html">Ranking semanal</a>
+      </nav>
+
+      <form class="buscador" action="#" role="search">
+        <input type="search" placeholder="Buscar" aria-label="Buscar">
+        <button type="submit" aria-label="Buscar">Ir</button>
+      </form>
+
+       <a class="barra-icono-usuario" href="cuenta.html" aria-label="Mi cuenta">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </a>
+  </header>
+
+<main>
+      <section class="noticias-portada" id="home">
+        <article class="noticia-card">
+          <img src="imagenes/scary movie.png" alt="Scary Movie vuelve con una nueva entrega">
+
+          <div class="noticia-contenido">
+            <h2>"Scary Movie" vuelve con una nueva entrega: humor y nostalgia asegurada</h2>
+            <a class="boton-noticia" href="noticia2.html">Ver noticia</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="carrusel-noticias" id="novedades" aria-label="Mas noticias">
+        <div class="carrusel-pista">
+          <a class="mini-noticia" href="noticia1.html">
+            <img src="imagenes/la empleada.png" alt="" class="carrusel-imagen">
+            <span class="mini-etiqueta">Novedades</span>
+            <span class="mini-noticia-texto">Los titulos que presentara Prime Video en junio</span>
+          </a>
+
+          <a class="mini-noticia" href="noticia3.html">
+            <img src="imagenes/michael jackson.png" alt="" class="carrusel-imagen">
+            <span class="mini-etiqueta">Novedades</span>
+            <span class="mini-noticia-texto">Llego la biopic de Michael, tan polemica como simple.</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/cannes.png" alt="" class="carrusel-imagen">
+            <span class="mini-etiqueta">Novedades</span>
+            <span class="mini-noticia-texto">Cannes 2026: las peliculas imperdibles que ya estan dando que hablar</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/envidiosa.png" alt="" class="carrusel-imagen">
+            <span class="mini-etiqueta">Novedades</span>
+            <span class="mini-noticia-texto">Netflix redobla su apuesta por el cine argentino y abre nuevas oficinas</span>
+          </a>
+        </div>
+
+        <div class="carrusel-puntos" aria-hidden="true">
+          <span class="activo"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="carrusel-noticias carrusel-comunidad" aria-label="Favoritos de la comunidad">
+        <div class="carrusel-barra-titulo">
+          <span class="carrusel-barra-titulo-linea">LOS FAVORITOS DE</span>
+          <span class="carrusel-barra-titulo-linea">LA COMUNIDAD</span>
+        </div>
+
+        <button class="carrusel-flecha carrusel-flecha-izquierda" type="button" aria-label="Ver noticia anterior">&#10094;</button>
+        <button class="carrusel-flecha carrusel-flecha-derecha" type="button" aria-label="Ver noticia siguiente">&#10095;</button>
+
+        <div class="carrusel-pista">
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/spielberg.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Lo mejor de Spielberg en este siglo? Que dice la critica sobre “El dia de la Revelación”</span>
+          </a>
+
+          <a class="mini-noticia" href="noticia4.html">
+            <img src="imagenes/euphoria.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">¿A qué hora se estrena el episodio final de la tercer temporada de Euphoria?</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/un varon.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Un varón: la película colombiana que tuvo su estreno mundial en el FICPBA</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/fede alvarez.png" alt="" class="carrusel-imagen carrusel-imagen-fede">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Entrevista a Fede Álvarez por el estreno de Alien: Romulus</span>
+          </a>
+        </div>
+
+        <div class="carrusel-puntos" aria-hidden="true">
+          <span class="activo"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+  
+      <section class="lo-mas-leido" aria-label="Lo más leído">
+
+        <div class="lml-encabezado">
+          <h2 class="lml-titulo">LO<br>MÁS<br>LEIDO</h2>
+
+          <div class="lml-carrusel-superior">
+            <div class="lml-carrusel-pista">
+
+              <a class="lml-noticia" href="#">
+                <img src="imagenes/criaturas luminosas.png" alt="Noticia 1">
+                <span class="lml-noticia-texto">La historia real detras de Criaturas Luminosas, la pelicula que emociona y arrasa en Netflx </span>
+              </a>
+
+              <a class="lml-noticia" href="#">
+                <img src="imagenes/la odisea.png" alt="Noticia 2">
+                <span class="lml-noticia-texto">La Odisea: se lanzo el primer trailer de la nueva pelicula de Christopher Nolan </span>
+              </a>
+
+              <a class="lml-noticia" href="#">
+                <img src="imagenes/scorse.png" alt="Noticia 3">
+                <span class="lml-noticia-texto">Una joya de martin scorsese abandona Netflix y todavia estas a tiempo de verla </span>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="lml-top5-bloque">
+          <div class="lml-top5-etiqueta">
+            <span class="lml-top5-texto">TOP</span>
+            <span class="lml-top5-numero">5</span>
+            <span class="lml-top5-subtexto">según los cinéfilos</span>
+          </div>
+
+          <div class="lml-top5-carrusel">
+            <div class="lml-top5-pista" id="lmlTop5Pista">
+
+              <a class="lml-top5-item" href="laEmpleada.html">
+                <span class="lml-top5-posicion">1</span>
+                <img src="imagenes/portada la empleada.png" alt="Top 1">
+                <span class="lml-top5-estrellas">
+                  <span class="lml-top5-estrellas-iconos">★★★★★</span>
+                  <span class="lml-top5-estrellas-nota">9.4 / 10</span>
+                </span>
+              </a>
+
+              <a class="lml-top5-item" href="noticia3.html">
+                <span class="lml-top5-posicion">2</span>
+                <img src="imagenes/portada michael jackson.png" alt="Top 2">
+                <span class="lml-top5-estrellas">
+                  <span class="lml-top5-estrellas-iconos">★★★★★</span>
+                  <span class="lml-top5-estrellas-nota">9.1 / 10</span>
+                </span>
+              </a>
+
+              <a class="lml-top5-item" href="noticia4.html">
+                <span class="lml-top5-posicion">3</span>
+                <img src="imagenes/portada euphoria.png" alt="Top 3">
+                <span class="lml-top5-estrellas">
+                  <span class="lml-top5-estrellas-iconos">★★★★☆</span>
+                  <span class="lml-top5-estrellas-nota">8.7 / 10</span>
+                </span>
+              </a>
+
+              <a class="lml-top5-item" href="#">
+                <span class="lml-top5-posicion">4</span>
+                <img src="imagenes/portada obsession.png" alt="Top 4">
+                <span class="lml-top5-estrellas">
+                  <span class="lml-top5-estrellas-iconos">★★★★☆</span>
+                  <span class="lml-top5-estrellas-nota">8.3 / 10</span>
+                </span>
+              </a>
+
+              <a class="lml-top5-item" href="#">
+                <span class="lml-top5-posicion">5</span>
+                <img src="imagenes/off-campus-portada.webp" alt="Top 5">
+                <span class="lml-top5-estrellas">
+                  <span class="lml-top5-estrellas-iconos">★★★★☆</span>
+                  <span class="lml-top5-estrellas-nota">8.0 / 10</span>
+                </span>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+       <section class="carrusel-etiqueta" id="recomendados" aria-label="Recomendados">
+ 
+        <div class="carrusel-etiqueta-titulo">RECOMENDADOS</div>
+ 
+        <div class="carrusel-etiqueta-pista">
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/recomendados 1.png" alt="Recomendado 1">
+            <span class="carrusel-etiqueta-texto">La pelicula premiada en cannes que no te podes perder en hbo </span>
+          </a>
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/recomendados 2.png" alt="Recomendado 2">
+            <span class="carrusel-etiqueta-texto">La casa de los espiritus: otro gran triunfo de las historias locales  </span>
+          </a>
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/recomedados 3.png" alt="Recomendado 3">
+            <span class="carrusel-etiqueta-texto">Las diez mejores biopics de los ultimos años </span>
+          </a>
+
+ 
+        </div>
+      </section>
+
+      <section class="carrusel-etiqueta" id="entrevistas" aria-label="Entrevistas">
+ 
+        <div class="carrusel-etiqueta-titulo">ENTREVISTAS</div>
+ 
+        <div class="carrusel-etiqueta-pista">
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/entrevista 1.png" alt="Entrevista 1">
+           <span class="carrusel-etiqueta-texto">Se estrena “Sin Piedad” y hablamos con Chris Pratt sobre el uso de la IA y más</span>
+          </a>
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/entrevista 2.png" alt="Entrevista 2">
+               <span class="carrusel-etiqueta-texto">Hablamos con Danny Philippou director de Bring Her Back</span>
+          </a>
+ 
+          <a class="carrusel-etiqueta-item" href="#">
+            <img src="imagenes/entrevista 3.png" alt="Entrevista 3">
+            <span class="carrusel-etiqueta-texto">Entrevista a Ariana Harwicz: “Me da confianza en mi escritura saber que le gustó a Scorsese”</span>
+          </a>
+ 
+        </div>
+ 
+      </section>
+
+  </main>
+
+<footer class="footer">
+      <div class="footer-logo" aria-label="Cinefilos">
+        <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
+      </div>
+
+      <p class="footer-texto">
+        Somos una comunidad apasionada por el cine, donde compartimos
+        historias, descubrimos nuevas miradas y celebramos juntos el
+        septimo arte.
+      </p>
+
+      <hr class="footer-linea">
+
+      <div class="redes">
+        <a href="https://www.instagram.com/cinefilosoficial" aria-label="Instagram"><img src="imagenes/ig.png" alt="Instagram"></a>
+        <a href="https://www.youtube.com/channel/UC08kA7iu9PEzDxkMf6_33Pw" aria-label="YouTube"><img src="imagenes/yotube.png" alt="YouTube"></a>
+        <a href="https://www.facebook.com/cinefilooos" aria-label="X"><img src="imagenes/x.png" alt="X"></a>
+        <a href="" aria-label="TikTok"><img src="imagenes/tiktok.png" alt="TikTok"></a>
+      </div>
+
+      <nav class="footer-links" aria-label="Enlaces del footer">
+        <a href="#">Comunidad</a>
+        <a href="#">Consentimiento</a>
+        <a href="#">Home</a>
+        <a href="#">Nosotros</a>
+      </nav>
+
+      <p class="copyright">&copy;2018 - 2021 Cinefilos</p>
+  </footer>
+<script>
+    const botonMenu = document.querySelector(".menu");
+  const botonBuscar = document.querySelector(".boton-buscar-mobile");
+  const barra = document.querySelector(".barra");
+  const campoBuscar = document.querySelector(".buscador input");
+  const carruselSecciones = Array.from(document.querySelectorAll(".carrusel-noticias")).map(function (seccion) {
+    return {
+      pista: seccion.querySelector(".carrusel-pista"),
+      miniNoticias: Array.from(seccion.querySelectorAll(".mini-noticia")),
+      puntosCarrusel: Array.from(seccion.querySelectorAll(".carrusel-puntos span")),
+      botonIzquierda: seccion.querySelector(".carrusel-flecha-izquierda"),
+      botonDerecha: seccion.querySelector(".carrusel-flecha-derecha"),
+      arrastrando: false,
+      inicioArrastreX: 0,
+      inicioScrollX: 0
+    };
+  });
+ 
+  function actualizarPuntoCarrusel(estado) {
+    if (!estado.pista || estado.miniNoticias.length === 0 || estado.puntosCarrusel.length === 0) {
+      return;
+    }
+ 
+    const centroVisible = estado.pista.getBoundingClientRect().left + estado.pista.clientWidth / 2;
+    let indiceActivo = 0;
+    let distanciaMenor = Infinity;
+ 
+    estado.miniNoticias.forEach(function (noticia, indice) {
+      const rect = noticia.getBoundingClientRect();
+      const centroNoticia = rect.left + rect.width / 2;
+      const distancia = Math.abs(centroVisible - centroNoticia);
+ 
+      if (distancia < distanciaMenor) {
+        distanciaMenor = distancia;
+        indiceActivo = indice;
+      }
+    });
+ 
+    estado.puntosCarrusel.forEach(function (punto, indice) {
+      punto.classList.toggle("activo", indice === indiceActivo);
+    });
+  }
+ 
+  function iniciarArrastreCarrusel(estado, evento) {
+    if (!estado.pista) {
+      return;
+    }
+ 
+    estado.arrastrando = true;
+    estado.inicioArrastreX = evento.clientX;
+    estado.inicioScrollX = estado.pista.scrollLeft;
+    estado.pista.classList.add("arrastrando");
+ 
+    if (typeof estado.pista.setPointerCapture === "function") {
+      estado.pista.setPointerCapture(evento.pointerId);
+    }
+  }
+ 
+  function moverCarrusel(estado, evento) {
+    if (!estado.arrastrando || !estado.pista) {
+      return;
+    }
+ 
+    const diferencia = evento.clientX - estado.inicioArrastreX;
+    estado.pista.scrollLeft = estado.inicioScrollX - diferencia;
+    actualizarPuntoCarrusel(estado);
+  }
+ 
+  function terminarArrastreCarrusel(estado, evento) {
+    if (!estado.pista) {
+      return;
+    }
+ 
+    estado.arrastrando = false;
+    estado.pista.classList.remove("arrastrando");
+ 
+    if (evento && typeof estado.pista.hasPointerCapture === "function" && estado.pista.hasPointerCapture(evento.pointerId)) {
+      estado.pista.releasePointerCapture(evento.pointerId);
+    }
+  }
+ 
+  function moverConFlecha(estado, direccion) {
+    if (!estado.pista || estado.miniNoticias.length === 0) {
+      return;
+    }
+ 
+    const anchoTarjeta = estado.miniNoticias[0].getBoundingClientRect().width;
+    estado.pista.scrollBy({
+      left: anchoTarjeta * direccion,
+      behavior: "smooth"
+    });
+  }
+ 
+  botonMenu.addEventListener("click", function () {
+    barra.classList.toggle("abierto");
+    const estaAbierto = barra.classList.contains("abierto");
+    botonMenu.setAttribute("aria-expanded", estaAbierto);
+    barra.classList.remove("buscando");
+    botonBuscar.setAttribute("aria-expanded", "false");
+  });
+ 
+  botonBuscar.addEventListener("click", function () {
+    barra.classList.toggle("buscando");
+    const estaBuscando = barra.classList.contains("buscando");
+    botonBuscar.setAttribute("aria-expanded", estaBuscando);
+    barra.classList.remove("abierto");
+    botonMenu.setAttribute("aria-expanded", "false");
+ 
+    if (estaBuscando) {
+      campoBuscar.focus();
+    }
+  });
+ 
+  carruselSecciones.forEach(function (estado) {
+    if (!estado.pista || estado.miniNoticias.length === 0 || estado.puntosCarrusel.length === 0) {
+      return;
+    }
+ 
+    estado.pista.addEventListener("scroll", function () {
+      actualizarPuntoCarrusel(estado);
+    }, { passive: true });
+ 
+    estado.pista.addEventListener("pointerdown", function (evento) {
+      iniciarArrastreCarrusel(estado, evento);
+    });
+ 
+    estado.pista.addEventListener("pointermove", function (evento) {
+      moverCarrusel(estado, evento);
+    });
+ 
+    estado.pista.addEventListener("pointerup", function (evento) {
+      terminarArrastreCarrusel(estado, evento);
+    });
+ 
+    estado.pista.addEventListener("pointercancel", function (evento) {
+      terminarArrastreCarrusel(estado, evento);
+    });
+ 
+    estado.pista.addEventListener("pointerleave", function (evento) {
+      terminarArrastreCarrusel(estado, evento);
+    });
+ 
+    if (estado.botonIzquierda) {
+      estado.botonIzquierda.addEventListener("click", function () {
+        moverConFlecha(estado, -1);
+      });
+    }
+ 
+    if (estado.botonDerecha) {
+      estado.botonDerecha.addEventListener("click", function () {
+        moverConFlecha(estado, 1);
+      });
+    }
+ 
+    window.addEventListener("resize", function () {
+      actualizarPuntoCarrusel(estado);
+    });
+ 
+    window.addEventListener("load", function () {
+      actualizarPuntoCarrusel(estado);
+    });
+ 
+    actualizarPuntoCarrusel(estado);
+  });
+ 
+  // carrusel de Lo más leído
+  [".lml-carrusel-pista", ".lml-top5-pista"].forEach(function(selector) {
+    const pista = document.querySelector(selector);
+    if (!pista) return;
+    let arrastrando = false, inicioX = 0, inicioScroll = 0;
+ 
+    pista.addEventListener("pointerdown", function(e) {
+      arrastrando = true;
+      inicioX = e.clientX;
+      inicioScroll = pista.scrollLeft;
+      pista.classList.add("arrastrando");
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener("pointermove", function(e) {
+      if (!arrastrando) return;
+      pista.scrollLeft = inicioScroll - (e.clientX - inicioX);
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev) {
+      pista.addEventListener(ev, function(e) {
+        arrastrando = false;
+        pista.classList.remove("arrastrando");
+        if (pista.hasPointerCapture(e.pointerId)) pista.releasePointerCapture(e.pointerId);
+      });
+    });
+  });
+ 
+    // Recomendados y Entrevistas
+  document.querySelectorAll(".carrusel-etiqueta-pista").forEach(function(pista) {
+    let arrastrando = false, inicioX = 0, inicioScroll = 0;
+ 
+    pista.addEventListener("pointerdown", function(e) {
+      arrastrando = true;
+      inicioX = e.clientX;
+      inicioScroll = pista.scrollLeft;
+      pista.classList.add("arrastrando");
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener("pointermove", function(e) {
+      if (!arrastrando) return;
+      pista.scrollLeft = inicioScroll - (e.clientX - inicioX);
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev) {
+      pista.addEventListener(ev, function(e) {
+        arrastrando = false;
+        pista.classList.remove("arrastrando");
+        if (pista.hasPointerCapture(e.pointerId)) pista.releasePointerCapture(e.pointerId);
+      });
+    });
+  });
+</script>
+</body>
+</html>
