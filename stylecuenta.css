@@ -1,0 +1,277 @@
+.barra-icono-usuario {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #f4f4f4;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color .2s ease;
+}
+
+.barra-icono-usuario:hover {
+  color: #e5d600;
+}
+
+.barra-icono-usuario.logueado {
+  color: #e5d600;
+}
+
+@media (min-width: 900px) {
+  .barra-icono-usuario {
+    display: inline-flex;
+  }
+}
+
+.perfil-seccion {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.perfil-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 28px;
+}
+
+.perfil-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #c8c8c8;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.perfil-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.perfil-info {
+  flex: 1;
+}
+
+.perfil-nombre {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #111;
+}
+
+.perfil-email {
+  color: #c9a800;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.perfil-derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.perfil-stats-fila {
+  display: flex;
+  gap: 20px;
+}
+
+.perfil-stat {
+  text-align: center;
+}
+
+.perfil-stat-numero {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.perfil-stat-label {
+  font-size: 11px;
+  color: #555;
+}
+
+.perfil-config svg {
+  width: 26px;
+  height: 26px;
+}
+
+.perfil-cerrar-sesion {
+  background: #1f1f1f;
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+}
+
+.perfil-cerrar-sesion:hover {
+  background: #e5d600;
+  color: #111;
+}
+
+
+.perfil-bloque {
+  padding: 24px 35px;
+}
+
+.perfil-bloque-titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.perfil-bloque-titulo::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #d8c600;
+  margin-top: 8px;
+}
+
+/* ================================================================
+   SCROLL
+=============================================================== */
+
+.perfil-scroll-fila {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.perfil-scroll-fila::-webkit-scrollbar {
+  height: 4px;
+}
+
+.perfil-scroll-fila::-webkit-scrollbar-thumb {
+  background: #bbb;
+}
+
+/* ================================================================
+   FAVORITOS
+=============================================================== */
+
+.fav-card {
+  position: relative;
+  width: 350px;
+  height: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.fav-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fav-card-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 6px;
+  background: linear-gradient(
+    transparent,
+    rgba(0,0,0,.85)
+  );
+}
+
+.fav-card-titulo {
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.perfil-bloque--comentarios {
+  background: white;
+}
+
+.comentario-card {
+  width: 230px;
+  height: 200px;
+  background: #d9d9d9;
+  border-radius: 12px;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.comentario-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.comentario-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  overflow: hidden;
+}
+
+.comentario-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comentario-nombre {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.comentario-pelicula {
+  margin: 0;
+  font-size: 9px;
+}
+
+.comentario-texto {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.3;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+
+  .perfil-card {
+    flex-wrap: wrap;
+  }
+
+  .perfil-derecha {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .perfil-bloque {
+    padding: 20px 15px;
+  }
+
+  .fav-card {
+    width: 140px;
+    min-width: 140px;
+    height: 80px;
+  }
+
+  .comentario-card {
+    width: 170px;
+  }
+
+  .perfil-bloque-titulo {
+    font-size: 24px;
+  }
+}
