@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylecuenta.css">
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <title>Mi cuenta — Cinefilos</title>
+</head>
+<body>
+
+
+  <header class="barra">
+    <button class="menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <a class="barra-logo" href="index.html" aria-label="Cinefilos">
+      <img src="imagenes/logo.png" alt="Cinefilos"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+      <span>CINE<strong>FILOS</strong><small>&reg;</small></span>
+    </a>
+
+    <nav class="barra-nav" aria-label="Secciones principales">
+      <div class="buscador-mobile-menu">
+        <input type="search" placeholder="Buscar" aria-label="Buscar">
+        <button type="submit" aria-label="Buscar">Ir</button>
+      </div>
+      <a href="novedades.html">Novedades</a>
+      <a href="resenas.html">Reseñas</a>
+      <a href="entrevistas.html">Entrevistas</a>
+      <a href="index.html#recomendados">Recomendados</a>
+      <a href="index.html#nosotros">Nosotros</a>
+      <a href="Ranking Semanal.html">Ranking semanal</a>
+    </nav>
+
+    <form class="buscador" action="#" role="search">
+      <input type="search" placeholder="Buscar" aria-label="Buscar">
+      <button type="submit" aria-label="Buscar">Ir</button>
+    </form>
+
+    <!-- Ícono de usuario: amarillo cuando está logueado (clase "logueado" la agrega JS) -->
+    <a class="barra-icono-usuario" href="cuenta.html" aria-label="Mi cuenta">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </a>
+  </header>
+
+ 
+  <main>
+    <section class="perfil-seccion">
+      <div class="perfil-card">
+
+        <!-- Avatar -->
+        <div class="perfil-avatar" aria-label="Foto de perfil">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="40" cy="32" r="17" fill="#888"/>
+            <ellipse cx="40" cy="70" rx="26" ry="18" fill="#888"/>
+          </svg>
+        </div>
+
+        <!-- Nombre y email -->
+        <div class="perfil-info">
+          <h1 class="perfil-nombre" id="perfil-nombre">Julio</h1>
+          <a class="perfil-email" id="perfil-email" href="#">juliosanchez@gmail.com</a>
+        </div>
+
+        <!-- Stats + config + logout -->
+        <div class="perfil-derecha">
+          <div class="perfil-stats-fila">
+            <div class="perfil-stat">
+              <span class="perfil-stat-numero" id="stat-comentarios">20</span>
+              <span class="perfil-stat-label">comentarios</span>
+            </div>
+            <div class="perfil-stat">
+              <span class="perfil-stat-numero" id="stat-calificaciones">67</span>
+              <span class="perfil-stat-label">calificaciones</span>
+            </div>
+            <a href="#" class="perfil-config" aria-label="Configuración">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </a>
+          </div>
+          <button class="perfil-cerrar-sesion" id="btn-cerrar-sesion" type="button">
+            cerrar sesión
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ÚLTIMOS ARTÍCULOS FAVORITOS ===== -->
+    <section class="perfil-bloque">
+      <h2 class="perfil-bloque-titulo">Tus últimos artículos favoritos</h2>
+      <div class="perfil-scroll-fila" id="lista-favoritos">
+
+        <article class="fav-card">
+          <img src="imagenes/reseñas nota1.jpeg" alt="Los 10 mejores biopics de los últimos años">
+          <div class="fav-card-overlay">
+            <span class="fav-card-titulo">Los 10 mejores biopics de los últimos años</span>
+          </div>
+        </article>
+
+        <article class="fav-card">
+          <img src="imagenes/michael jackson.png" alt="Paris Jackson sobre la biopic de Michael">
+          <div class="fav-card-overlay">
+            <span class="fav-card-titulo">Paris Jackson sobre la biopic de Michael: &ldquo;Hay muchas mentiras&rdquo;</span>
+          </div>
+        </article>
+
+        <article class="fav-card">
+          <img src="imagenes/entrevistas nota3.png" alt="Artículo">
+          <div class="fav-card-overlay">
+            <span class="fav-card-titulo">Título del artículo favorito</span>
+          </div>
+        </article>
+
+        <article class="fav-card">
+          <img src="imagenes/euphoria.png" alt="Artículo">
+          <div class="fav-card-overlay">
+            <span class="fav-card-titulo">Título del artículo favorito</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== COMENTARIOS ===== -->
+    <section class="perfil-bloque perfil-bloque--comentarios">
+      <h2 class="perfil-bloque-titulo">Comentarios</h2>
+      <div class="perfil-scroll-fila" id="lista-comentarios">
+
+        <div class="comentario-card">
+          <div class="comentario-header">
+            <div class="comentario-avatar">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="15" r="9" fill="#aaa"/>
+                <ellipse cx="20" cy="36" rx="14" ry="10" fill="#aaa"/>
+              </svg>
+            </div>
+            <div class="comentario-info">
+              <p class="comentario-nombre">Julio</p>
+              <p class="comentario-pelicula">&ldquo;La empleada&rdquo;</p>
+            </div>
+          </div>
+          <p class="comentario-texto">Una locura la tensión que maneja desde el minuto uno. Sydney Sweeney se come la pantalla y el guión te va dejando pistas falsas todo el tiempo. El plot twist del final me voló la cabeza, no lo esperaba ni ahí. De lo mejorcito de suspenso del año.</p>
+        </div>
+
+        <div class="comentario-card">
+          <div class="comentario-header">
+            <div class="comentario-avatar">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="15" r="9" fill="#aaa"/>
+                <ellipse cx="20" cy="36" rx="14" ry="10" fill="#aaa"/>
+              </svg>
+            </div>
+            <div class="comentario-info">
+              <p class="comentario-nombre">Julio</p>
+              <p class="comentario-pelicula">&ldquo;La empleada&rdquo;</p>
+            </div>
+          </div>
+          <p class="comentario-texto">Una locura la tensión que maneja desde el minuto uno. Sydney Sweeney se come la pantalla y el guión te va dejando pistas falsas todo el tiempo. El plot twist del final me voló la cabeza, no lo esperaba ni ahí. De lo mejorcito de suspenso del año.</p>
+        </div>
+
+        <div class="comentario-card">
+          <div class="comentario-header">
+            <div class="comentario-avatar">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="15" r="9" fill="#aaa"/>
+                <ellipse cx="20" cy="36" rx="14" ry="10" fill="#aaa"/>
+              </svg>
+            </div>
+            <div class="comentario-info">
+              <p class="comentario-nombre">Julio</p>
+              <p class="comentario-pelicula">&ldquo;La empleada&rdquo;</p>
+            </div>
+          </div>
+          <p class="comentario-texto">Una locura la tensión que maneja desde el minuto uno. Sydney Sweeney se come la pantalla y el guión te va dejando pistas falsas todo el tiempo. El plot twist del final me voló la cabeza, no lo esperaba ni ahí. De lo mejorcito de suspenso del año.</p>
+        </div>
+
+        <div class="comentario-card">
+          <div class="comentario-header">
+            <div class="comentario-avatar">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="15" r="9" fill="#aaa"/>
+                <ellipse cx="20" cy="36" rx="14" ry="10" fill="#aaa"/>
+              </svg>
+            </div>
+            <div class="comentario-info">
+              <p class="comentario-nombre">Julio</p>
+              <p class="comentario-pelicula">&ldquo;La empleada&rdquo;</p>
+            </div>
+          </div>
+          <p class="comentario-texto">Una locura la tensión que maneja desde el minuto uno. Sydney Sweeney se come la pantalla y el guión te va dejando pistas falsas todo el tiempo. El plot twist del final me voló la cabeza, no lo esperaba ni ahí. De lo mejorcito de suspenso del año.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer">
+      <div class="footer-logo" aria-label="Cinefilos">
+        <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
+      </div>
+
+      <p class="footer-texto">
+        Somos una comunidad apasionada por el cine, donde compartimos
+        historias, descubrimos nuevas miradas y celebramos juntos el
+        septimo arte.
+      </p>
+
+      <hr class="footer-linea">
+
+      <div class="redes">
+        <a href="https://www.instagram.com/cinefilosoficial" aria-label="Instagram"><img src="imagenes/ig.png" alt="Instagram"></a>
+        <a href="https://www.youtube.com/channel/UC08kA7iu9PEzDxkMf6_33Pw" aria-label="YouTube"><img src="imagenes/yotube.png" alt="YouTube"></a>
+        <a href="https://www.facebook.com/cinefilooos" aria-label="X"><img src="imagenes/x.png" alt="X"></a>
+        <a href="" aria-label="TikTok"><img src="imagenes/tiktok.png" alt="TikTok"></a>
+      </div>
+
+      <nav class="footer-links" aria-label="Enlaces del footer">
+        <a href="#">Comunidad</a>
+        <a href="#">Consentimiento</a>
+        <a href="#">Home</a>
+        <a href="#">Nosotros</a>
+      </nav>
+
+      <p class="copyright">&copy;2018 - 2021 Cinefilos</p>
+  </footer>
+
+  <script src="cuenta.js"></script>
+
+</body>
+</html>

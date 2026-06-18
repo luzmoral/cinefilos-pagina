@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+  <link rel="stylesheet" href="stylebri.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Reseñas — Cinefilos</title>
+
+</head>
+<body>
+
+<header class="barra">
+  <button class="menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <a class="barra-logo" href="index.html" aria-label="Cinefilos">
+    <img src="imagenes/logo.png" alt="Cinefilos" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+    <span>CINE<strong>FILOS</strong><small>&reg;</small></span>
+  </a>
+
+   <button class="boton-buscar-mobile" type="button" aria-label="Abrir buscador" aria-expanded="false"></button>
+  <nav class="barra-nav" aria-label="Secciones principales">
+    <div class="buscador-mobile-menu">
+      <input type="search" placeholder="Buscar" aria-label="Buscar">
+      <button type="submit" aria-label="Buscar">Ir</button>
+    </div>
+   
+   <a  href="novedades.html">Novedades</a>
+    <a  href="resenas.html">Reseñas</a>
+    <a class="activo-entrevistas" href="entrevista.html">Entrevistas</a>
+    <a  href="index.html#recomendados">Recomendados</a>
+    <a href="index.html#nosotros">Nosotros</a>
+    <a href="Ranking Semanal.html">Ranking semanal</a>
+  </nav>
+
+  <form class="buscador" action="#" role="search">
+    <input type="search" placeholder="Buscar" aria-label="Buscar">
+    <button type="submit" aria-label="Buscar">Ir</button>
+  </form>
+</header>
+
+<main>
+
+  <!-- Encabezado de sección -->
+  <section class="resenas-hero">
+    <div class="resenas-hero-contenido">
+      <h1 class="resenas-hero-titulo">ENTREVISTAS</h1>
+    </div>
+  </section>
+
+  <section class="carrusel-noticias carrusel-comunidad" aria-label="Favoritos de la comunidad">
+        <div class="carrusel-barra-titulo">
+          <span class="carrusel-barra-titulo-linea">LOS FAVORITOS DE</span>
+          <span class="carrusel-barra-titulo-linea">LOS AFICIONADOS</span>
+        </div>
+
+        <button class="carrusel-flecha carrusel-flecha-izquierda" type="button" aria-label="Ver noticia anterior">&#10094;</button>
+        <button class="carrusel-flecha carrusel-flecha-derecha" type="button" aria-label="Ver noticia siguiente">&#10095;</button>
+
+        <div class="carrusel-pista">
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/spielberg.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Lo mejor de Spielberg en este siglo? Que dice la critica sobre “El dia de la Revelación”</span>
+          </a>
+
+          <a class="mini-noticia" href="noticia4.html">
+            <img src="imagenes/euphoria.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">¿A qué hora se estrena el episodio final de la tercer temporada de Euphoria?</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/un varon.png" alt="" class="carrusel-imagen">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Un varón: la película colombiana que tuvo su estreno mundial en el FICPBA</span>
+          </a>
+
+          <a class="mini-noticia" href="#">
+            <img src="imagenes/fede alvarez.png" alt="" class="carrusel-imagen carrusel-imagen-fede">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Entrevista a Fede Álvarez por el estreno de Alien: Romulus</span>
+          </a>
+        </div>
+
+        <div class="carrusel-puntos" aria-hidden="true">
+          <span></span>
+          <span class="activo"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+
+
+  <!-- Grilla de reseñas -->
+  <div class="resenas-zona-grid">
+  <div class="resenas-grid">
+ 
+
+    <a class="resena-card" href="">
+      <img src="imagenes/entrevista nota1.png" alt="">
+      <div class="resena-card-overlay">
+        <span class="resena-card-badge">Aclamado por<br>la comunidad</span>
+        <div class="resena-card-footer">
+          <h3 class="resena-card-titulo"><!-- Título --></h3>
+        </div>
+      </div>
+    </a>
+ 
+    <a class="resena-card" href="">
+      <img src="imagenes/entrevista nota2.png" alt="">
+      <div class="resena-card-overlay">
+        <div class="resena-card-footer">
+          <h3 class="resena-card-titulo"></h3>
+        </div>
+      </div>
+    </a>
+ 
+    <a class="resena-card" href="">
+      <img src="imagenes/entrevistas nota3.png" alt="">
+      <div class="resena-card-overlay">
+        <div class="resena-card-footer">
+          <h3 class="resena-card-titulo"></h3>
+        </div>
+      </div>
+    </a>
+ 
+    <a class="resena-card" href="">
+      <img src="imagenes/entrevistas nota4.png" alt="">
+      <div class="resena-card-overlay">
+        <span class="resena-card-badge">Aclamado por<br>la comunidad</span>
+        <div class="resena-card-footer">
+          <h3 class="resena-card-titulo"></h3>
+        </div>
+      </div>
+    </a>
+ 
+  </div>
+ 
+  <!-- Paginación -->
+  <nav class="resenas-paginacion" aria-label="Páginas de reseñas">
+    <a href="#" class="resenas-pag-flecha" aria-label="Página anterior">&#8592;</a>
+    <a href="#" class="activo" aria-current="page">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#" class="resenas-pag-flecha" aria-label="Página siguiente">&#8594;</a>
+  </nav>
+  </div>
+ 
+</main>
+ 
+<footer class="footer">
+  <div class="footer-logo" aria-label="Cinefilos">
+    <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
+  </div>
+ 
+  <p class="footer-texto">
+    Somos una comunidad apasionada por el cine, donde compartimos
+    historias, descubrimos nuevas miradas y celebramos juntos el
+    séptimo arte.
+  </p>
+ 
+  <hr class="footer-linea">
+ 
+  <div class="redes">
+    <a href="https://www.instagram.com/cinefilosoficial" aria-label="Instagram"><img src="imagenes/ig.png" alt="Instagram"></a>
+    <a href="https://www.youtube.com/channel/UC08kA7iu9PEzDxkMf6_33Pw" aria-label="YouTube"><img src="imagenes/yotube.png" alt="YouTube"></a>
+    <a href="https://www.facebook.com/cinefilooos" aria-label="X"><img src="imagenes/x.png" alt="X"></a>
+    <a href="" aria-label="TikTok"><img src="imagenes/tiktok.png" alt="TikTok"></a>
+  </div>
+ 
+  <nav class="footer-links" aria-label="Enlaces del footer">
+    <a href="#">Comunidad</a>
+    <a href="#">Consentimiento</a>
+    <a href="index.html">Home</a>
+    <a href="#">Nosotros</a>
+  </nav>
+ 
+  <p class="copyright">&copy;2018 - 2021 Cinefilos</p>
+</footer>
+ 
+<script>
+  const botonMenu = document.querySelector(".menu");
+  const botonBuscar = document.querySelector(".boton-buscar-mobile");
+  const barra = document.querySelector(".barra");
+  const campoBuscar = document.querySelector(".buscador input");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const pista = document.querySelector(".carrusel-comunidad .carrusel-pista");
+    if (pista) {
+      const items = pista.querySelectorAll(".mini-noticia");
+      if (items[1]) {
+        pista.scrollTo({ left: items[1].offsetLeft, behavior: "instant" });
+      }
+    }
+  });
+
+  botonMenu.addEventListener("click", function () {
+    barra.classList.toggle("abierto");
+    const estaAbierto = barra.classList.contains("abierto");
+    botonMenu.setAttribute("aria-expanded", estaAbierto);
+    barra.classList.remove("buscando");
+    botonBuscar.setAttribute("aria-expanded", "false");
+  });
+
+  botonBuscar.addEventListener("click", function () {
+    barra.classList.toggle("buscando");
+    const estaBuscando = barra.classList.contains("buscando");
+    botonBuscar.setAttribute("aria-expanded", estaBuscando);
+    barra.classList.remove("abierto");
+    botonMenu.setAttribute("aria-expanded", "false");
+    if (estaBuscando) {
+      campoBuscar.focus();
+    }
+  });
+</script>
+</body>
+</html>
