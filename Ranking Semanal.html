@@ -38,13 +38,20 @@
     <a href="index.html#entrevistas">Entrevistas</a>
     <a href="index.html#recomendados">Recomendados</a>
     <a href="index.html#nosotros">Nosotros</a>
-    <a class="activo" href="Ranking Semanal.html">Ranking semanal</a>
+    <a class="activo" href="RankingSemanal.html">Ranking semanal</a>
   </nav>
 
   <form class="buscador" action="#" role="search">
     <input type="search" placeholder="Buscar" aria-label="Buscar">
     <button type="submit" aria-label="Buscar">Ir</button>
   </form>
+  
+  <a class="barra-icono-usuario" href="cuenta.html" aria-label="Mi cuenta">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+  </a>
 </header>
 
     <main class="contenedor-rankingsemanal">
@@ -116,8 +123,9 @@
 
 
             <div class="card-pelicula">
-                  <a href="laEmpleada.html">
+                  <a href="laEmpleada.html" class="enlace-poster">
                 <img src="imagenes/assets/turbulenciaenlaoficina.png" alt="portadaTurbulencia" class="foto-pelicula">
+                </a>
                 <div class="info-pelicula">
                     <div>
                         <h4>TURBULENCIA EN LA OFICINA</h4>
@@ -140,7 +148,9 @@
                 </div>
             </div>
             <div class="card-pelicula">
+                <a href="laEmpleada.html">
                 <img src="imagenes/assets/frankenstein.png" alt="portadaFrankenstein" class="foto-pelicula">
+                </a>
                 <div class="info-pelicula">
                     <div>
                         <h4>FRANKENSTEIN</h4>
@@ -150,7 +160,9 @@
                 </div>
             </div>
             <div class="card-pelicula">
+                <a href="laEmpleada.html">
                 <img src="imagenes/assets/mortalkombat.png" alt="portadaMortal" class="foto-pelicula">
+                </a>
                 <div class="info-pelicula">
                     <div>
                         <h4>MORTAL KOMBAT II</h4>
@@ -160,7 +172,9 @@
                 </div>
             </div>
             <div class="card-pelicula">
+                <a href="laEmpleada.html">
                 <img src="imagenes/assets/thedrama.png" alt="portadaTheDrama" class="foto-pelicula">
+                </a>
                 <div class="info-pelicula">
                     <div>
                         <h4>THE DRAMA</h4>
@@ -190,8 +204,8 @@
   <div class="redes">
     <a href="https://www.instagram.com/cinefilosoficial" aria-label="Instagram"><img src="imagenes/ig.png" alt="Instagram"></a>
     <a href="https://www.youtube.com/channel/UC08kA7iu9PEzDxkMf6_33Pw" aria-label="YouTube"><img src="imagenes/yotube.png" alt="YouTube"></a>
-    <a href="https://www.facebook.com/cinefilooos" aria-label="X"><img src="imagenes/x.png" alt="X"></a>
-    <a href="" aria-label="TikTok"><img src="imagenes/tiktok.png" alt="TikTok"></a>
+    <a href="https://www.facebook.com/cinefilooos" aria-label="facebook"><img src="imagenes/facebook.png" alt="facebook"></a>
+    <a href="https://www.tiktok.com/@cinefilosoficiall?_r=1&_t=ZS-97NEEXDqILQ" aria-label="TikTok"><img src="imagenes/tiktok.png" alt="TikTok"></a>
   </div>
 
   <nav class="footer-links" aria-label="Enlaces del footer">
@@ -229,6 +243,8 @@
     }
   });
 </script>
+
+<script src="sesion.js"></script>
 </body>
 
 </html>
