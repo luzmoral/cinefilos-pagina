@@ -1876,6 +1876,20 @@ body {
   .lml-top5-estrellas-nota {
     font-size: 14px;
   }
+
+  .redes {
+    gap: 20px;
+  }
+
+  .redes a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .redes img {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -2066,6 +2080,16 @@ body {
 
   .redes {
     gap: 18px;
+  }
+
+  .redes a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .redes img {
+    width: 42px;
+    height: 42px;
   }
 
   .carrusel-etiqueta {
