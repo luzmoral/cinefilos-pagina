@@ -67,32 +67,35 @@
 
         <!-- Nombre y email -->
         <div class="perfil-info">
-          <h1 class="perfil-nombre" id="perfil-nombre">Julio</h1>
-          <a class="perfil-email" id="perfil-email" href="#">juliosanchez@gmail.com</a>
+          <h1 class="perfil-nombre" id="perfil-nombre">Sin perfil</h1>
+          <a class="perfil-email" id="perfil-email" href="#" style="display:none"></a>
         </div>
 
-        <!-- Stats + config + logout -->
-        <div class="perfil-derecha">
-          <div class="perfil-stats-fila">
-            <div class="perfil-stat">
-              <span class="perfil-stat-numero" id="stat-comentarios">20</span>
-              <span class="perfil-stat-label">comentarios</span>
-            </div>
-            <div class="perfil-stat">
-              <span class="perfil-stat-numero" id="stat-calificaciones">67</span>
-              <span class="perfil-stat-label">calificaciones</span>
-            </div>
-            <a href="#" class="perfil-config" aria-label="Configuración">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </a>
-          </div>
-          <button class="perfil-cerrar-sesion" id="btn-cerrar-sesion" type="button">
+        <!-- Botones: cerrar sesión + engranaje (arriba a la derecha) -->
+        <div class="perfil-acciones-top">
+          <button class="perfil-btn-registrate" id="btn-registrate" type="button">¡Registrate!</button>
+          <button class="perfil-cerrar-sesion" id="btn-cerrar-sesion" type="button" style="display:none">
             cerrar sesión
           </button>
+          <a href="#" class="perfil-config" aria-label="Configuración">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Stats: comentarios y calificaciones -->
+        <div class="perfil-stats-fila">
+          <div class="perfil-stat">
+            <span class="perfil-stat-numero" id="stat-comentarios">0</span>
+            <span class="perfil-stat-label">comentarios</span>
+          </div>
+          <div class="perfil-stat">
+            <span class="perfil-stat-numero" id="stat-calificaciones">0</span>
+            <span class="perfil-stat-label">calificaciones</span>
+          </div>
         </div>
 
       </div>
@@ -101,7 +104,7 @@
     <!--tus articulos fav-->
     <section class="perfil-bloque">
       <h2 class="perfil-bloque-titulo">Tus últimos artículos favoritos</h2>
-      <div class="perfil-scroll-fila" id="lista-favoritos">
+      <div class="perfil-scroll-fila perfil-scroll-fila--favoritos" id="lista-favoritos">
         <!-- Renderizado dinámico por cuenta.js -->
       </div>
     </section>
