@@ -64,6 +64,10 @@
       return !!JSON.parse(localStorage.getItem(CLAVE_USUARIO));
     } catch (e) { return false; }
   }
+  if (!estaLogueado()) {
+  alert("Tenés que registrarte para usar esta función.");
+  return;
+}
 
   /* ── ¿Ya es favorito? ── */
   function esFavorito(url) {
