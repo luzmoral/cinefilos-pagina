@@ -1691,6 +1691,15 @@ body {
     height: clamp(320px, 28vw, 460px);
     max-width: 520px;
     border-radius: 8px;
+    transform: none;
+    margin: 0;
+    box-shadow: none;
+    scroll-snap-align: start;
+  }
+
+  .carrusel-etiqueta-item.activo-carrusel {
+    transform: none;
+    box-shadow: none;
   }
 
   .carrusel-etiqueta-texto {
@@ -2146,13 +2155,30 @@ body {
   }
 
   .carrusel-etiqueta-pista {
-    gap: 10px;
-    padding: 0 14px 12px;
+    gap: 0;
+    padding: 18px 0 22px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
   }
 
+  /* Todos los items: reducidos y con margen lateral para que asome el siguiente */
   .carrusel-etiqueta-item {
-    flex: 0 0 44vw;
-    height: 58vw;
+    flex: 0 0 62vw;
+    height: 82vw;
+    margin: 0 4vw;
+    scroll-snap-align: center;
+    transition: transform 0.35s cubic-bezier(.25,.46,.45,.94),
+                box-shadow 0.35s ease;
+    transform: scale(0.82);
+    transform-origin: center center;
+    box-shadow: none;
+  }
+
+  /* Item central activo: más grande */
+  .carrusel-etiqueta-item.activo-carrusel {
+    transform: scale(1);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.6);
   }
 
   .carrusel-etiqueta-texto {
