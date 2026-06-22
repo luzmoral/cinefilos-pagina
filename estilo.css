@@ -1208,11 +1208,12 @@ body {
 /* Card principal del perfil */
 .perfil-card {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 28px;
+  padding: 22px 20px;
 }
 
 /* Avatar circular */
@@ -1229,14 +1230,14 @@ body {
 }
 
 .perfil-avatar svg {
-  width: 80px;
-  height: 80px;
+  width: 90%;
+  height: 90%;
 }
 
 /* Info: nombre y email */
 .perfil-info {
   flex: 1;
-  min-width: 0;
+  min-width: 140px;
 }
 
 .perfil-nombre {
@@ -1287,14 +1288,14 @@ body {
 }
 
 .perfil-stat-numero {
-  font-size: 26px;
+  font-size: 36px;
   font-weight: 900;
   font-family: 'Montserrat', sans-serif;
   color: #111;
 }
 
 .perfil-stat-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: #555;
   text-align: center;
@@ -1311,8 +1312,8 @@ body {
 }
 
 .perfil-config svg {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
 }
 
 .perfil-config:hover {
@@ -1325,22 +1326,92 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 16px;
+  padding: 9px 20px;
   background-color: #1f1f1f;
   color: #fff;
   border: none;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
   text-transform: lowercase;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
 .perfil-cerrar-sesion:hover {
   background-color: #e5d600;
   color: #111;
+}
+
+/* ── Desktop: avatar | info | acciones-top en fila, stats al final ── */
+.perfil-acciones-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Stats al final de la fila en desktop */
+.perfil-card .perfil-stats-fila {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+}
+
+/* ── Mobile: avatar+info arriba, botones top-right, stats centrados abajo ── */
+@media (max-width: 600px) {
+  .perfil-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 14px 12px;
+    align-items: start;
+    padding: 18px 16px 22px;
+  }
+
+  /* Col 1 fila 1: avatar */
+  .perfil-avatar {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Col 2 fila 1: nombre + email */
+  .perfil-info {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  /* Col 3 fila 1: botones arriba a la derecha */
+  .perfil-acciones-top {
+    grid-column: 3;
+    grid-row: 1;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  /* Fila 2: stats centrados, ocupan las 3 columnas */
+  .perfil-card .perfil-stats-fila {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+    gap: 40px;
+    margin-left: 0;
+  }
+}
+
+/* En desktop grande los números pueden crecer un poco más */
+@media (min-width: 900px) {
+  .perfil-stat-numero {
+    font-size: 42px;
+  }
+  .perfil-nombre {
+    font-size: 32px;
+  }
 }
 
 /*compu*/
@@ -1730,35 +1801,6 @@ body {
 }
 
 @media (max-width: 600px) {
-  .perfil-card {
-    flex-wrap: wrap;
-    padding: 18px 16px;
-    gap: 16px;
-  }
-
-  .perfil-avatar {
-    width: 72px;
-    height: 72px;
-  }
-
-  .perfil-avatar svg {
-    width: 64px;
-    height: 64px;
-  }
-
-  .perfil-nombre {
-    font-size: 22px;
-  }
-
-  .perfil-derecha {
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .perfil-stat-numero {
-    font-size: 22px;
-  }
-
   /* Tarjetas de Novedades / Reseñas / Entrevistas / Recomendados:
      en una sola columna, así no se achican y el texto no se encima
      con la foto. */
