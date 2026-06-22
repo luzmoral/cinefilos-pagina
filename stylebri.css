@@ -51,6 +51,13 @@ body {
     flex: 1;
 }
 
+.icono-thumbsup {
+    width: 60px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .marcador-avatar {
     width: 35px;
     height: 35px;
@@ -506,6 +513,83 @@ body {
 .formulario-estilo { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
 .formulario-estilo input { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; }
 
+/* ─────────────────────────────────────────────
+   MODAL "Iniciá sesión / Registrate" (#modal-registro)
+   Mismo diseño oscuro/amarillo que el modal del
+   Top 5 en index.html (fondo #1a1a1a, borde amarillo,
+   Montserrat). Sólo afecta a este modal puntual, no
+   al botón CALIFICAR ni al modal del podio.
+───────────────────────────────────────────── */
+#modal-registro .contenido-modal {
+    background-color: #1a1a1a;
+    border: 1.5px solid #e5d600;
+    border-radius: 10px;
+    max-width: 320px !important;
+    padding: 32px 22px 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .55);
+}
+
+#modal-registro h3 {
+    color: #e5d600;
+    font-size: 18px;
+    letter-spacing: .03em;
+    margin: 0 0 8px;
+}
+
+#modal-registro .cuerpo-modal-registro p {
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0 0 18px;
+}
+
+#modal-registro .formulario-estilo {
+    gap: 8px;
+    margin-top: 0;
+}
+
+#modal-registro .formulario-estilo input {
+    background: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #f4f4f4;
+    padding: 9px 11px;
+    font-size: 13px;
+}
+
+#modal-registro .formulario-estilo input::placeholder {
+    color: #888;
+}
+
+#modal-registro .formulario-estilo input:focus {
+    outline: none;
+    border-color: #e5d600;
+}
+
+#modal-registro .btn-calificar {
+    background: #e5d600;
+    color: #111;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%;
+    margin: 6px 0 0;
+}
+
+#modal-registro .btn-calificar:hover {
+    background: #ffd700;
+}
+
+#modal-registro .btn-cerrar {
+    top: 8px;
+    right: 12px;
+    font-size: 24px;
+    color: #999;
+}
+
+#modal-registro .btn-cerrar:hover {
+    color: #fff;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -596,21 +680,60 @@ body {
 .enlace-ranking:hover { text-decoration: underline; }
 
 /* --- RECOMENDACIONES Y PIE --- */
-.recomendaciones { margin-top: 40px; }
-.recomendaciones h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
-.cuadricula-recomendaciones { display: flex; gap: 20px; margin-top: 20px; }
-
-.caja-recomendacion {
-    background-color: #E0E0E0;
-    height: 150px;
-    flex: 1;
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-end;
+.recomendaciones {
+    margin-top: 50px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.caja-recomendacion p { margin: 0; font-size: 0.8rem; font-weight: 600; }
+.recomendaciones h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.cuadricula-recomendaciones {
+    display: flex;
+    gap: 25px;
+    margin-top: 20px;
+}
+.caja-recomendacion {
+    background-color: #E0E0E0;
+    height: 280px; /* antes 150px */
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.caja-recomendacion:hover {
+    transform: translateY(-5px);
+}
+
+.caja-recomendacion img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.caja-recomendacion p {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 12px;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.85)
+    );
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 .navegacion-articulo {
     display: flex;
@@ -642,4 +765,11 @@ body {
     .base-1 { height: 60px; width: 106px; }
     .base-2 { height: 35px; width: 84px; }
     .base-3 { height: 25px; width: 84px; }
+    .cuadricula-recomendaciones {
+    flex-direction: column;
+}
+
+.caja-recomendacion {
+    height: 220px;
+}
 }
