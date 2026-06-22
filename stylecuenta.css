@@ -1,5 +1,7 @@
+/* El display y la posición del ícono ya los maneja estilo.css en todas las
+   páginas (mobile y desktop). Acá solo dejamos los colores para no pisar
+   esa regla según el orden en que cada página cargue las hojas de estilo. */
 .barra-icono-usuario {
-  display: none;
   align-items: center;
   justify-content: center;
   color: #f4f4f4;
@@ -14,12 +16,6 @@
 
 .barra-icono-usuario.logueado {
   color: #e5d600;
-}
-
-@media (min-width: 900px) {
-  .barra-icono-usuario {
-    display: inline-flex;
-  }
 }
 
 .perfil-seccion {
@@ -138,9 +134,6 @@
   margin-top: 8px;
 }
 
-/* ================================================================
-   SCROLL
-=============================================================== */
 
 .perfil-scroll-fila {
   display: flex;
@@ -157,14 +150,11 @@
   background: #bbb;
 }
 
-/* ================================================================
-   FAVORITOS
-=============================================================== */
 
 .fav-card {
   position: relative;
   width: 350px;
-  height: 300px;
+  height: 330px;
   min-width: 300px;
   max-width: 300px;
   overflow: hidden;
@@ -191,7 +181,7 @@
 
 .fav-card-titulo {
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -201,11 +191,11 @@
 }
 
 .comentario-card {
-  width: 230px;
-  height: 200px;
+  width: 320px;
+  height: 260px;
   background: #d9d9d9;
   border-radius: 12px;
-  padding: 10px;
+  padding: 18px;
   flex-shrink: 0;
 }
 
@@ -216,8 +206,8 @@
 }
 
 .comentario-avatar {
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: white;
   overflow: hidden;
@@ -230,19 +220,19 @@
 
 .comentario-nombre {
   margin: 0;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .comentario-pelicula {
   margin: 0;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .comentario-texto {
   margin: 0;
-  font-size: 10px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.4;
   color: #555;
 }
 
@@ -262,16 +252,241 @@
   }
 
   .fav-card {
-    width: 140px;
-    min-width: 140px;
-    height: 80px;
+    width: 200px;
+    min-width: 200px;
+    height: 130px;
   }
 
   .comentario-card {
-    width: 170px;
+    width: 230px;
+    height: 220px;
   }
 
   .perfil-bloque-titulo {
     font-size: 24px;
+  }
+}
+/* favoritos vacio*/
+.fav-card--vacio {
+  background: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #bbb;
+  cursor: default;
+}
+
+.fav-card-vacio-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #999;
+  padding: 16px;
+  text-align: center;
+}
+
+.fav-card-vacio-contenido svg {
+  stroke: #bbb;
+  flex-shrink: 0;
+}
+
+.fav-card-vacio-contenido span {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #aaa;
+  max-width: 120px;
+}
+
+/* comentarios vacio */
+.comentario-card--vacio {
+  background: #d9d9d9;
+  border: 2px dashed #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comentario-vacio-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  text-align: center;
+  padding: 10px;
+}
+
+.comentario-vacio-contenido svg {
+  stroke: #bbb;
+  flex-shrink: 0;
+}
+
+.comentario-vacio-contenido span {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #aaa;
+  max-width: 110px;
+}
+
+/*Botón de favorito en artículos */
+.btn-favorito {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 1.5px solid #ccc;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  cursor: pointer;
+  transition: all .2s ease;
+  margin-top: 10px;
+}
+
+.btn-favorito svg {
+  transition: all .2s ease;
+}
+
+.btn-favorito:hover {
+  border-color: #e5d600;
+  color: #333;
+}
+
+.btn-favorito.guardado {
+  border-color: #e5d600;
+  color: #333;
+  background: #fffbe6;
+}
+
+.btn-favorito.guardado svg {
+  fill: #e5d600;
+  stroke: #e5d600;
+}
+
+/* peliculas calificada*/
+.calificacion-card {
+  position: relative;
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #000;
+  display: block;
+  text-decoration: none;
+}
+
+.calificacion-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.calificacion-card-estrellas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 8px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,.85));
+  color: #e5d600;
+  font-size: 19px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* calificaciones vacio */
+.calificacion-card--vacio {
+  background: #d9d9d9;
+  border: 2px dashed #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.calificacion-vacio-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  text-align: center;
+  padding: 10px;
+}
+
+.calificacion-vacio-contenido svg {
+  stroke: #bbb;
+  flex-shrink: 0;
+}
+
+.calificacion-vacio-contenido span {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #aaa;
+  max-width: 110px;
+}
+
+@media (max-width: 768px) {
+  .calificacion-card {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+}
+/* Botón "×" para eliminar favoritos / comentarios / calificaciones */
+.fav-card,
+.comentario-card,
+.calificacion-card {
+  position: relative;
+}
+
+.card-eliminar {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .15s ease, background .15s ease;
+}
+
+.fav-card:hover .card-eliminar,
+.comentario-card:hover .card-eliminar,
+.calificacion-card:hover .card-eliminar,
+.card-eliminar:focus-visible {
+  opacity: 1;
+}
+
+.card-eliminar:hover {
+  background: #e5d600;
+  color: #111;
+}
+
+/* En mobile no hay hover: mostrar siempre, más chico el target */
+@media (max-width: 768px) {
+  .card-eliminar {
+    opacity: 1;
   }
 }
