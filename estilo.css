@@ -1936,11 +1936,11 @@ body {
     padding: 34px 16px 24px;
   }
  
-  .listado-hero-titulo {
-    font-size: clamp(30px, 12vw, 56px);
+ .listado-hero-titulo {
+    font-size: clamp(22px, 8vw, 42px);
     letter-spacing: 1px;
-  }
- 
+}
+
   .listado-zona-grid {
     padding: 14px 12px 28px;
   }
