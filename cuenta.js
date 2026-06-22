@@ -74,6 +74,10 @@ btnRegistrate.addEventListener("click", function () {
     abrirModalSesion();
   });
 
+  btnCerrar.addEventListener("click", function () {
+    cerrarSesion();
+  });
+
   /* ── Modal de sesión para cuenta.html (igual al del index) ── */
   function abrirModalSesion() {
     /* Si ya existe, solo mostrarlo */
