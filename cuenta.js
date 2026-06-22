@@ -21,10 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Lógica exclusiva de cuenta.html ── */
   var btnCerrar = document.getElementById("btn-cerrar-sesion");
+  var btnRegistrate = document.getElementById("btn-registrate");
   if (!btnCerrar) return;
 
   if (usuario) {
     mostrarPerfil(usuario);
+  } else {
+    mostrarSinSesion();
   }
 
   renderFavoritos();
@@ -67,7 +70,147 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  btnCerrar.addEventListener("click", cerrarSesion);
+btnRegistrate.addEventListener("click", function () {
+    abrirModalSesion();
+  });
+
+  /* ── Modal de sesión para cuenta.html (igual al del index) ── */
+  function abrirModalSesion() {
+    /* Si ya existe, solo mostrarlo */
+    var modalExistente = document.getElementById("modal-iniciar-sesion");
+    if (modalExistente) {
+      mostrarPanelModal(document.getElementById("panel-registro"));
+      modalExistente.classList.remove("oculto");
+      return;
+    }
+
+    /* Inyectar el HTML del modal */
+    var div = document.createElement("div");
+    div.innerHTML =
+      '<div id="modal-iniciar-sesion" class="modal-sesion-overlay oculto">' +
+        '<div class="modal-sesion-caja">' +
+          '<button type="button" class="modal-sesion-cerrar" id="cerrar-modal-iniciar-sesion" aria-label="Cerrar">&times;</button>' +
+
+          '<div class="modal-sesion-panel" id="panel-registro">' +
+            '<h3 class="modal-sesion-titulo">FORMÁ PARTE DE<br>LA COMUNIDAD</h3>' +
+            '<p class="modal-sesion-subtexto">Unite para calificar tus películas favoritas, dejar tus opiniones y debatir con la comunidad de cinéfilos más grande.</p>' +
+            '<div class="modal-campo-icono">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>' +
+              '<input class="modal-sesion-campo" id="reg-nombre" type="text" placeholder="Nombre" maxlength="20" autocomplete="username">' +
+            '</div>' +
+            '<div class="modal-campo-icono">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>' +
+              '<input class="modal-sesion-campo" id="reg-email" type="email" placeholder="Email" autocomplete="email">' +
+            '</div>' +
+            '<div class="modal-campo-icono">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>' +
+              '<input class="modal-sesion-campo" id="reg-pass" type="password" placeholder="Contraseña" autocomplete="new-password">' +
+            '</div>' +
+            '<p class="modal-sesion-error" id="reg-error">Completá todos los campos.</p>' +
+            '<button class="modal-sesion-btn" id="btn-registro" type="button">Registrarme</button>' +
+            '<p class="modal-sesion-cambiar">\xbfYa ten\xe9s cuenta? <button type="button" class="modal-sesion-link" id="ir-a-login">iniciar sesi\xf3n</button></p>' +
+          '</div>' +
+
+          '<div class="modal-sesion-panel oculto" id="panel-login">' +
+            '<h3 class="modal-sesion-titulo">BIENVENIDO<br>DE VUELTA</h3>' +
+            '<p class="modal-sesion-subtexto">Ingres\xe1 con tu cuenta para poder calificar y dejar tus rese\xf1as.</p>' +
+            '<div class="modal-campo-icono">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>' +
+              '<input class="modal-sesion-campo" id="login-email" type="email" placeholder="Email" autocomplete="email">' +
+            '</div>' +
+            '<div class="modal-campo-icono">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>' +
+              '<input class="modal-sesion-campo" id="login-pass" type="password" placeholder="Contrase\xf1a" autocomplete="current-password">' +
+            '</div>' +
+            '<p class="modal-sesion-error" id="login-error">Complet\xe1 todos los campos.</p>' +
+            '<button class="modal-sesion-btn" id="btn-login" type="button">Ingresar</button>' +
+            '<p class="modal-sesion-cambiar">\xbfNo ten\xe9s cuenta? <button type="button" class="modal-sesion-link" id="ir-a-registro">registrarse</button></p>' +
+          '</div>' +
+
+        '</div>' +
+      '</div>';
+    document.body.appendChild(div.firstChild);
+
+    var modal = document.getElementById("modal-iniciar-sesion");
+    var panelReg   = document.getElementById("panel-registro");
+    var panelLogin = document.getElementById("panel-login");
+
+    function mostrarPanelModal(panel) {
+      panelReg.classList.toggle("oculto", panel !== panelReg);
+      panelLogin.classList.toggle("oculto", panel !== panelLogin);
+      var primerCampo = panel.querySelector(".modal-sesion-campo");
+      if (primerCampo) setTimeout(function () { primerCampo.focus(); }, 50);
+      document.getElementById("reg-error").style.display = "none";
+      document.getElementById("login-error").style.display = "none";
+    }
+
+    function cerrarModal() { modal.classList.add("oculto"); }
+
+    document.getElementById("cerrar-modal-iniciar-sesion").addEventListener("click", cerrarModal);
+    modal.addEventListener("click", function (e) { if (e.target === modal) cerrarModal(); });
+    document.getElementById("ir-a-login").addEventListener("click", function () { mostrarPanelModal(panelLogin); });
+    document.getElementById("ir-a-registro").addEventListener("click", function () { mostrarPanelModal(panelReg); });
+
+    /* Registro */
+    document.getElementById("btn-registro").addEventListener("click", function () {
+      var nombre = document.getElementById("reg-nombre").value.trim();
+      var email  = document.getElementById("reg-email").value.trim();
+      var pass   = document.getElementById("reg-pass").value;
+      var error  = document.getElementById("reg-error");
+      if (!nombre || !email || !pass) { error.style.display = "block"; return; }
+      error.style.display = "none";
+      var u = { nombre: nombre, email: email };
+      if (window.cinefiloSesion) { window.cinefiloSesion.guardarUsuario(u); window.cinefiloSesion.actualizarIcono(); }
+      else { localStorage.setItem("usuarioCinefilo", JSON.stringify(u)); localStorage.setItem("usuario_nombre", nombre); localStorage.setItem("usuario_email", email); }
+      cerrarModal();
+      mostrarPerfil(u); renderFavoritos(); renderComentarios(); renderCalificaciones();
+    });
+    [document.getElementById("reg-nombre"), document.getElementById("reg-email"), document.getElementById("reg-pass")].forEach(function (c) {
+      c.addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("btn-registro").click(); });
+    });
+
+    /* Login */
+    document.getElementById("btn-login").addEventListener("click", function () {
+      var email = document.getElementById("login-email").value.trim();
+      var pass  = document.getElementById("login-pass").value;
+      var error = document.getElementById("login-error");
+      if (!email || !pass) { error.style.display = "block"; return; }
+      error.style.display = "none";
+      var u = { nombre: email.split("@")[0], email: email };
+      if (window.cinefiloSesion) { window.cinefiloSesion.guardarUsuario(u); window.cinefiloSesion.actualizarIcono(); }
+      else { localStorage.setItem("usuarioCinefilo", JSON.stringify(u)); localStorage.setItem("usuario_nombre", u.nombre); localStorage.setItem("usuario_email", email); }
+      cerrarModal();
+      mostrarPerfil(u); renderFavoritos(); renderComentarios(); renderCalificaciones();
+    });
+    [document.getElementById("login-email"), document.getElementById("login-pass")].forEach(function (c) {
+      c.addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("btn-login").click(); });
+    });
+
+    /* Mostrar el modal */
+    mostrarPanelModal(panelReg);
+    modal.classList.remove("oculto");
+  }
+
+  function mostrarPanelModal(panel) {
+    var panelReg   = document.getElementById("panel-registro");
+    var panelLogin = document.getElementById("panel-login");
+    if (!panelReg || !panelLogin) return;
+    panelReg.classList.toggle("oculto", panel !== panelReg);
+    panelLogin.classList.toggle("oculto", panel !== panelLogin);
+  }
+
+  /* Si el usuario inicia sesión desde el dropdown mientras está en esta página */
+  document.addEventListener("cinefilo:sesion", function (e) {
+    var u = obtenerUsuario();
+    if (u) {
+      mostrarPerfil(u);
+      renderFavoritos();
+      renderComentarios();
+      renderCalificaciones();
+    } else {
+      mostrarSinSesion();
+    }
+  });
 
   /* ─────────────── Funciones auxiliares ─────────────── */
 
@@ -81,6 +224,18 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (e) { return null; }
   }
 
+  function mostrarSinSesion() {
+    var elNombre   = document.getElementById("perfil-nombre");
+    var elEmail    = document.getElementById("perfil-email");
+    var elCerrar   = document.getElementById("btn-cerrar-sesion");
+    var elReg      = document.getElementById("btn-registrate");
+
+    if (elNombre) elNombre.textContent = "Sin perfil";
+    if (elEmail)  elEmail.style.display = "none";
+    if (elCerrar) elCerrar.style.display = "none";
+    if (elReg)    elReg.style.display = "inline-block";
+  }
+
   function mostrarPerfil(u) {
     var elNombre = document.getElementById("perfil-nombre");
     var elEmail  = document.getElementById("perfil-email");
@@ -88,7 +243,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var elCalif  = document.getElementById("stat-calificaciones");
 
     if (elNombre) elNombre.textContent = u.nombre;
-    if (elEmail) { elEmail.textContent = u.email; elEmail.href = "mailto:" + u.email; }
+    if (elEmail) { elEmail.textContent = u.email; elEmail.href = "mailto:" + u.email; elEmail.style.display = ""; }
+
+    var elCerrar = document.getElementById("btn-cerrar-sesion");
+    var elReg    = document.getElementById("btn-registrate");
+    if (elCerrar) elCerrar.style.display = "";
+    if (elReg)    elReg.style.display = "none";
 
     /* Contar desde localStorage */
     var comentarios = obtenerComentarios();
