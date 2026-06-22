@@ -13,10 +13,11 @@ body {
 
 .barra {
   position: relative;
+  z-index: 50; /* el header siempre por encima del contenido de la página (pero por debajo de los modales, que usan z-index:1000) */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 112px;
+  height: 86px;
   background-color: #1f1f1f;
 }
 
@@ -274,6 +275,19 @@ body {
   display: none;
 }
 
+/* Evita que el navegador interprete un click+pequeño movimiento del mouse
+   sobre una imagen como "arrastrar imagen" (comportamiento nativo del
+   navegador en compu, no existe al tocar en celu). Si no se desactiva,
+   el navegador cancela el click y el link nunca navega. */
+.carrusel-pista img,
+.lml-carrusel-pista img,
+.lml-top5-pista img,
+.carrusel-etiqueta-pista img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 /* El botón de búsqueda mobile ya no existe — el buscador va dentro del nav */
 .boton-buscar-mobile {
   display: none;
@@ -283,8 +297,8 @@ body {
 .buscador-mobile-menu {
   display: none;
   align-items: center;
-  height: 44px;
-  margin: 12px 20px 4px;
+  height: 38px;
+  margin: 8px 20px 2px;
   overflow: hidden;
   background-color: #fff;
   border-radius: 999px;
@@ -657,16 +671,25 @@ body {
 .lml-top5-item {
   position: relative;
   flex: 0 0 clamp(96px, 26vw, 180px);
-  height: clamp(140px, 38vw, 240px);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   scroll-snap-align: start;
   text-decoration: none;
+}
+
+/* Contenedor de la imagen (antes era el .lml-top5-item entero) */
+.lml-top5-media {
+  position: relative;
   display: block;
+  width: 100%;
+  height: clamp(140px, 38vw, 240px);
+  overflow: hidden;
   border-radius: 6px;
 }
 
 /* Degradé negro de abajo hacia arriba */
-.lml-top5-item::after {
+.lml-top5-media::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -676,45 +699,43 @@ body {
   pointer-events: none;
 }
 
-/* Estrellas visibles en hover */
+/* Estrellas: ahora siempre visibles, debajo de la imagen */
 .lml-top5-estrellas {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  opacity: 0;
-  transform: translateY(calc(-50% + 10px));
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-
-.lml-top5-item:hover .lml-top5-estrellas {
-  opacity: 1;
-  transform: translateY(-50%);
 }
 
 .lml-top5-estrellas-iconos {
-  color: #f2df00;
+  display: inline-flex;
+  gap: 2px;
   font-size: clamp(11px, 3vw, 18px);
-  letter-spacing: 2px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.95);
   line-height: 1;
+}
+
+.lml-top5-estrella {
+  color: #5a5a5a;
+  cursor: pointer;
+  transition: color .12s ease, transform .12s ease;
+}
+
+.lml-top5-estrella.activa {
+  color: #f2df00;
+}
+
+.lml-top5-estrella:hover {
+  transform: scale(1.2);
 }
 
 .lml-top5-estrellas-nota {
   color: #fff;
   font-size: clamp(9px, 2vw, 13px);
   font-weight: 900;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.95);
   line-height: 1;
 }
 
-.lml-top5-item img {
+.lml-top5-media img {
   display: block;
   width: 100%;
   height: 100%;
@@ -724,7 +745,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-.lml-top5-item:hover img {
+.lml-top5-item:hover .lml-top5-media img {
   transform: scale(1.04);
 }
 
@@ -778,8 +799,9 @@ body {
   max-width: 560px;
   margin: 0 auto 26px;
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.12;
+  text-wrap: balance; /* reparte el texto entre líneas para que nunca quede  una palabra sola al final (mobile y compu) */
 }
 
 .footer-linea {
@@ -801,11 +823,11 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 55px;
+  height: 55px;
   background-color: #111;
-  color: #fff;
   border-radius: 50%;
+  overflow: hidden;
   text-decoration: none;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -814,11 +836,9 @@ body {
   background-color: #242424;
   transform: translateY(-3px) scale(1.05);
 }
-
 .redes img {
-  display: block;
-  width: 80px;
-  height: 80px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 
@@ -849,44 +869,489 @@ body {
   font-size: 15px;
 }
 
-/*celu menu */
-
-@media (max-width: 899px) {
-  .barra.abierto {
-    height: auto;
-    padding-bottom: 18px;
-  }
-
-  .barra.abierto .barra-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #1f1f1f;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .barra.abierto .barra-nav a {
-    padding: 15px 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    text-align: left;
-  }
-
-  .barra.abierto .buscador-mobile-menu {
-    display: flex;
-  }
-
-  .carrusel-barra-titulo-linea {
-    display: block;
-  }
+/* parte de recomendados /entrevista*/
+.carrusel-etiqueta {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(164, 139, 0, 0.35), transparent 50%),
+    linear-gradient(180deg, #0b0900 0%, #050505 100%);
+  padding: 0 0 36px;
+  overflow: hidden;
 }
 
-/* compu de index*/
+/* marco amarrillo */
+.carrusel-etiqueta-titulo {
+  position: relative;
+  margin: 0 auto 18px;
+  width: calc(100% - 20px);
+  padding: 10px 14px 20px;
+  background-color: #f1d400;
+  color: #111;
+  font-size: clamp(10px, 3vw, 14px);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: clamp(1px, 0.5vw, 3px);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
+}
 
+/* carrusel de los recomendados / entrevista*/
+.carrusel-etiqueta-pista {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0 20px 14px;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.carrusel-etiqueta-pista::-webkit-scrollbar { display: none; }
+.carrusel-etiqueta-pista.arrastrando { cursor: grabbing; }
+
+/* card individual*/
+.carrusel-etiqueta-item {
+  position: relative;
+  flex: 0 0 clamp(140px, 38vw, 220px);
+  height: clamp(180px, 50vw, 290px);
+  overflow: hidden;
+  border-radius: 6px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.carrusel-etiqueta-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.3s ease;
+}
+
+.carrusel-etiqueta-item:hover img {
+  transform: scale(1.04);
+}
+
+.carrusel-etiqueta-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.88) 100%);
+  z-index: 1;
+}
+
+/*Texto en la parte inferior de la tarjeta */
+.carrusel-etiqueta-texto {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
+  z-index: 2;
+  font-size: clamp(11px, 2.8vw, 14px);
+  font-weight: 800;
+  line-height: 1.12;
+}
+/* secciones de Reseñas / Nosotros / Ranking */
+.seccion-base {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(164, 139, 0, 0.28), transparent 50%),
+    linear-gradient(180deg, #050505 0%, #0b0900 100%);
+  padding: 0 0 48px;
+  overflow: hidden;
+}
+
+.seccion-titulo-banda {
+  position: relative;
+  margin: 0 auto 28px;
+  width: calc(100% - 20px);
+  padding: 10px 14px 20px;
+  background-color: #f1d400;
+  color: #111;
+  font-size: clamp(10px, 3vw, 14px);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: clamp(1px, 0.5vw, 3px);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
+}
+
+.seccion-base-contenido {
+  padding: 0 20px;
+  color: #fff;
+  min-height: 80px;
+}
+
+/* pagina novedades, entrevista,recomendado*/
+.barra-nav a.activo-novedades {
+  color: #f2df00;
+}
+
+.barra-nav a.activo-entrevistas {
+  color: #f2df00;
+}
+/* pagina resena */
+/* Link activo en nav (para la foto de euphoria) */
+.barra-nav a.activo {
+  color: #f2df00;
+}
+
+/* Hero de la sección */
+.listado-hero {
+  
+  padding: 54px 24px 48px;
+  text-align: center;
+}
+
+.listado-hero-etiqueta {
+  display: inline-block;
+  padding: 5px 16px;
+  background-color: #f1d400;
+  color: #111;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.listado-hero-titulo {
+  margin: 0 0 14px;
+  color: black;
+  font-size: clamp(42px, 10vw, 80px);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.listado-zona-grid {
+  background-color: #f0f0f0;
+  padding: 20px 20px 36px;
+}
+ 
+/* Grilla 2 columnas*/
+.listado-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto 0;
+}
+ 
+/*Card de reseña */
+.listado-card {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+ 
+.listado-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+ 
+.listado-card:hover img {
+  transform: scale(1.05);
+}
+ 
+/* degradé de abajo hacia arriba */
+.listado-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.15) 55%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* el título siempre pegado abajo, tenga badge o no */
+  padding: clamp(10px, 2vw, 18px);
+}
+ 
+/* barra de aclamado por la comunidad: fuera del flujo flex, anclada arriba */
+.listado-card-badge {
+  position: absolute;
+  top: clamp(10px, 2vw, 18px);
+  left: clamp(10px, 2vw, 18px);
+  padding: 5px 10px;
+  background-color: #f1d400;
+  color: #111;
+  font-size: clamp(8px, 1.4vw, 11px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  text-align: center;
+}
+ 
+/* Texto inferior de la card */
+.listado-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+ 
+.listado-card-titulo {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(14px, 2vw, 19px);
+  font-weight: 800;
+  line-height: 1.25;
+  display: -webkit-box;       /* mantener por compatibilidad */
+  -webkit-line-clamp: 3;      /* mantener por compatibilidad */
+  -webkit-box-orient: vertical; /* mantener por compatibilidad */
+  overflow: hidden;
+  line-clamp: 3;              /* agregar la versión estándar */
+}
+ 
+.listado-paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 20px 8px;
+  background-color: transparent;
+}
+ 
+.listado-paginacion a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #ddd;
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+ 
+.listado-paginacion a:hover {
+  background-color: #bbb;
+  color: #111;
+}
+ 
+.listado-paginacion a.activo {
+  background-color: #f1d400;
+  color: #111;
+}
+ 
+.listado-pag-flecha {
+  background-color: transparent !important;
+  color: #333 !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+}
+ 
+.listado-pag-flecha:hover {
+  background-color: transparent !important;
+  color: #111 !important;
+}
+/*usuario */
+/* Íconos de usuario y búsqueda en la barra (desktop) */
+.barra-iconos {
+  display: none;
+  align-items: center;
+  gap: 18px;
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.barra-icono-usuario,
+.barra-icono-buscar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4f4f4;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.barra-icono-usuario:hover,
+.barra-icono-buscar:hover,
+.barra-icono-usuario.activo {
+  color: #e5d600;
+}
+
+/* Sección contenedora del perfil */
+.perfil-seccion {
+  background-color: #fff;
+  padding: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Card principal del perfil */
+.perfil-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 28px;
+}
+
+/* Avatar circular */
+.perfil-avatar {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #c8c8c8;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.perfil-avatar svg {
+  width: 80px;
+  height: 80px;
+}
+
+/* Info: nombre y email */
+.perfil-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.perfil-nombre {
+  margin: 0 0 4px;
+  font-size: 28px;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  color: #111;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.perfil-email {
+  display: inline-block;
+  color: #c9a800;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.perfil-email:hover {
+  text-decoration: underline;
+}
+
+/* Bloque derecho: stats + config + logout */
+.perfil-derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.perfil-stats-fila {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Cada estadística */
+.perfil-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.perfil-stat-numero {
+  font-size: 26px;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  color: #111;
+}
+
+.perfil-stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+}
+
+/* Ícono de configuración */
+.perfil-config {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.3s ease;
+}
+
+.perfil-config svg {
+  width: 26px;
+  height: 26px;
+}
+
+.perfil-config:hover {
+  color: #111;
+  transform: rotate(45deg);
+}
+
+/* Botón cerrar sesión */
+.perfil-cerrar-sesion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 16px;
+  background-color: #1f1f1f;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.perfil-cerrar-sesion:hover {
+  background-color: #e5d600;
+  color: #111;
+}
+
+/*compu*/
 @media (min-width: 900px) {
+  .footer-texto {
+    max-width: 720px;
+    font-size: 18px;
+  }
+
+  .footer-linea {
+    width: 100%;
+  }
 
   .barra {
     justify-content: flex-start;
@@ -1101,7 +1566,18 @@ body {
 
   .lml-top5-item {
     flex: 0 0 clamp(160px, 17vw, 240px);
+  }
+
+  .lml-top5-media {
     height: clamp(210px, 24vw, 330px);
+    border-radius: 8px;
+  }
+
+  .lml-top5-media::after {
+    border-radius: 8px;
+  }
+
+  .lml-top5-media img {
     border-radius: 8px;
   }
 
@@ -1119,13 +1595,171 @@ body {
   .lml-top5-estrellas-nota {
     font-size: clamp(11px, 1.1vw, 15px);
   }
+
+  .carrusel-etiqueta {
+    padding: 0 0 48px;
+  }
+
+  .carrusel-etiqueta-titulo {
+    width: calc(100% - 24px);
+    padding: 8px 10px 18px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
+  }
+
+  .carrusel-etiqueta-pista {
+    gap: 20px;
+    padding: 0 34px 18px;
+    justify-content: flex-start;
+  }
+
+  .carrusel-etiqueta-item {
+    flex: 0 0 calc((100vw - 108px) / 3);
+    height: clamp(320px, 28vw, 460px);
+    max-width: 520px;
+    border-radius: 8px;
+  }
+
+  .carrusel-etiqueta-texto {
+    left: 14px;
+    right: 14px;
+    bottom: 16px;
+    font-size: clamp(13px, 1.2vw, 16px);
+  }
+
+  .seccion-titulo-banda {
+    width: calc(100% - 24px);
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 8px 10px 18px;
+  }
+
+  .seccion-base-contenido {
+    padding: 0 34px;
+    min-height: 120px;
+  }
+
+  .listado-hero {
+    padding: 64px 34px 48px;
+  }
+ 
+  .listado-zona-grid {
+    padding: 28px 34px 48px;
+  }
+ 
+  .listado-grid {
+    gap: 14px;
+  }
+ 
+  .listado-paginacion {
+    gap: 10px;
+  }
+ 
+  .listado-paginacion a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .barra-iconos {
+    display: flex;
+  }
 }
 
-/* celu pequeño de index*/
-@media (max-width: 520px) {
+/* celular */
+@media (max-width: 899px) {
+  /* Ícono de usuario: en mobile va anclado al borde derecho de la
+     barra, igual que el menú hamburguesa va anclado al izquierdo,
+     para que quede lejos del logo y bien alineado con el resto.
+     Cubre los dos casos posibles:
+       - cuenta.html: el <a> queda como hijo directo de .barra
+       - resto de páginas: sesion.js envuelve el <a> en
+         .barra-icono-usuario-wrapper (necesario para el dropdown) */
+  .barra > .barra-icono-usuario {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
+  /* El wrapper ocupa todo el alto de la barra (no solo el del ícono),
+     así el menú desplegable arranca justo debajo del header completo
+     y no a mitad de camino, encima de la foto de portada. */
+  .barra .barra-icono-usuario-wrapper {
+    position: absolute;
+    right: 24px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .barra.abierto {
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  .barra.abierto .barra-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #1f1f1f;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .barra.abierto .barra-nav a {
+    padding: 9px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: left;
+  }
+
+  .barra.abierto .buscador-mobile-menu {
+    display: flex;
+  }
+
+  .carrusel-barra-titulo-linea {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .perfil-card {
+    flex-wrap: wrap;
+    padding: 18px 16px;
+    gap: 16px;
+  }
+
+  .perfil-avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .perfil-avatar svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .perfil-nombre {
+    font-size: 22px;
+  }
+
+  .perfil-derecha {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .perfil-stat-numero {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 520px) {
   .barra {
-    height: 92px;
+    height: 70px;
   }
 
   .menu {
@@ -1137,6 +1771,16 @@ body {
   .menu span {
     width: 34px;
     height: 4px;
+  }
+
+  .barra > .barra-icono-usuario,
+  .barra .barra-icono-usuario-wrapper {
+    right: 18px;
+  }
+
+  .barra-icono-usuario svg {
+    width: 21px;
+    height: 21px;
   }
 
   .barra-logo img {
@@ -1230,6 +1874,9 @@ body {
 
   .lml-top5-item {
     flex: 0 0 26vw;
+  }
+
+  .lml-top5-media {
     height: 38vw;
   }
 
@@ -1249,133 +1896,7 @@ body {
   .redes {
     gap: 22px;
   }
-}
-/* parte de recomendados /entrevista*/
 
-.carrusel-etiqueta {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(164, 139, 0, 0.35), transparent 50%),
-    linear-gradient(180deg, #0b0900 0%, #050505 100%);
-  padding: 0 0 36px;
-  overflow: hidden;
-}
-
-/* marco amarrillo */
-.carrusel-etiqueta-titulo {
-  position: relative;
-  margin: 0 auto 18px;
-  width: calc(100% - 20px);
-  padding: 10px 14px 20px;
-  background-color: #f1d400;
-  color: #111;
-  font-size: clamp(10px, 3vw, 14px);
-  font-weight: 900;
-  line-height: 1.1;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: clamp(1px, 0.5vw, 3px);
-  clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
-}
-
-/* carrusel de los recomendados / entrevista*/
-.carrusel-etiqueta-pista {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  padding: 0 20px 14px;
-  cursor: grab;
-  touch-action: pan-x;
-}
-
-.carrusel-etiqueta-pista::-webkit-scrollbar { display: none; }
-.carrusel-etiqueta-pista.arrastrando { cursor: grabbing; }
-
-/* card individual*/
-.carrusel-etiqueta-item {
-  position: relative;
-  flex: 0 0 clamp(140px, 38vw, 220px);
-  height: clamp(180px, 50vw, 290px);
-  overflow: hidden;
-  border-radius: 6px;
-  scroll-snap-align: start;
-  text-decoration: none;
-  color: #fff;
-  display: block;
-}
-
-.carrusel-etiqueta-item img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 0.3s ease;
-}
-
-.carrusel-etiqueta-item:hover img {
-  transform: scale(1.04);
-}
-
-.carrusel-etiqueta-item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.88) 100%);
-  z-index: 1;
-}
-
-/*Texto en la parte inferior de la tarjeta */
-.carrusel-etiqueta-texto {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 12px;
-  z-index: 2;
-  font-size: clamp(11px, 2.8vw, 14px);
-  font-weight: 800;
-  line-height: 1.12;
-}
-
-/* Compu Recomendados / Entrevistas */
-@media (min-width: 900px) {
-  .carrusel-etiqueta {
-    padding: 0 0 48px;
-  }
-
-  .carrusel-etiqueta-titulo {
-    width: calc(100% - 24px);
-    padding: 8px 10px 18px;
-    font-size: 14px;
-    letter-spacing: 3px;
-    clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
-  }
-
-  .carrusel-etiqueta-pista {
-    gap: 20px;
-    padding: 0 34px 18px;
-    justify-content: flex-start;
-  }
-
-  .carrusel-etiqueta-item {
-    flex: 0 0 calc((100vw - 108px) / 3);
-    height: clamp(320px, 28vw, 460px);
-    max-width: 520px;
-    border-radius: 8px;
-  }
-
-  .carrusel-etiqueta-texto {
-    left: 14px;
-    right: 14px;
-    bottom: 16px;
-    font-size: clamp(13px, 1.2vw, 16px);
-  }
-}
-
-/* Celu Recomendados / Entrevistas*/
-@media (max-width: 520px) {
   .carrusel-etiqueta {
     padding: 0 0 28px;
   }
@@ -1403,495 +1924,134 @@ body {
     right: 8px;
     bottom: 8px;
   }
-}
 
-/* secciones de Reseñas / Nosotros / Ranking */
-.seccion-base {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(164, 139, 0, 0.28), transparent 50%),
-    linear-gradient(180deg, #050505 0%, #0b0900 100%);
-  padding: 0 0 48px;
-  overflow: hidden;
-}
-
-.seccion-titulo-banda {
-  position: relative;
-  margin: 0 auto 28px;
-  width: calc(100% - 20px);
-  padding: 10px 14px 20px;
-  background-color: #f1d400;
-  color: #111;
-  font-size: clamp(10px, 3vw, 14px);
-  font-weight: 900;
-  line-height: 1.1;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: clamp(1px, 0.5vw, 3px);
-  clip-path: polygon(0 0, 100% 0, 100% 55%, 68% 55%, 64% 100%, 36% 100%, 32% 55%, 0 55%);
-}
-
-.seccion-base-contenido {
-  padding: 0 20px;
-  color: #fff;
-  min-height: 80px;
-}
-
-@media (min-width: 900px) {
-  .seccion-titulo-banda {
-    width: calc(100% - 24px);
-    font-size: 14px;
-    letter-spacing: 3px;
-    padding: 8px 10px 18px;
-  }
-
-  .seccion-base-contenido {
-    padding: 0 34px;
-    min-height: 120px;
-  }
-}
-
-@media (max-width: 520px) {
   .seccion-titulo-banda {
     width: calc(100% - 16px);
     font-size: clamp(9px, 2.8vw, 11px);
     letter-spacing: 0;
     clip-path: polygon(0 0, 100% 0, 100% 55%, 66% 55%, 62% 100%, 38% 100%, 34% 55%, 0 55%);
   }
-}
 
-
-/* pagina novedades, entrevista,recomendado*/
-.barra-nav a.activo-novedades {
-  color: #f2df00;
-}
-
-.barra-nav a.activo-entrevistas {
-  color: #f2df00;
-}
-
-
-/* pagina resena */
-
-/* Link activo en nav (para la foto de euphoria) */
-.barra-nav a.activo {
-  color: #f2df00;
-}
-
-/* Hero de la sección */
-.resenas-hero {
-  
-  padding: 54px 24px 48px;
-  text-align: center;
-}
-
-.resenas-hero-etiqueta {
-  display: inline-block;
-  padding: 5px 16px;
-  background-color: #f1d400;
-  color: #111;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.resenas-hero-titulo {
-  margin: 0 0 14px;
-  color: black;
-  font-size: clamp(42px, 10vw, 80px);
-  font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.resenas-zona-grid {
-  background-color: #f0f0f0;
-  padding: 20px 20px 36px;
-}
- 
-/* Grilla 2 columnas*/
-.resenas-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  max-width: 1200px;
-  margin: 0 auto 0;
-}
- 
-/*Card de reseña */
-.resena-card {
-  display: block;
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  text-decoration: none;
-  background-color: #1a1a1a;
-}
- 
-.resena-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease;
-}
- 
-.resena-card:hover img {
-  transform: scale(1.05);
-}
- 
-/* degradé de abajo hacia arriba */
-.resena-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.88) 0%,
-    rgba(0, 0, 0, 0.15) 55%,
-    transparent 100%
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(10px, 2vw, 18px);
-}
- 
-/* barra de aclamado por la comunidad */
-.resena-card-badge {
-  align-self: flex-start;
-  padding: 5px 10px;
-  background-color: #f1d400;
-  color: #111;
-  font-size: clamp(8px, 1.4vw, 11px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.3;
-  text-align: center;
-}
- 
-/* Texto inferior de la card */
-.resena-card-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
- 
-.resena-card-titulo {
-  display: -webkit-box;       /* mantener por compatibilidad */
-  -webkit-line-clamp: 3;      /* mantener por compatibilidad */
-  -webkit-box-orient: vertical; /* mantener por compatibilidad */
-  overflow: hidden;
-  line-clamp: 3;              /* agregar la versión estándar */
-}
- 
-.resenas-paginacion {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 28px 20px 8px;
-  background-color: transparent;
-}
- 
-.resenas-paginacion a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  background-color: #ddd;
-  color: #333;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
- 
-.resenas-paginacion a:hover {
-  background-color: #bbb;
-  color: #111;
-}
- 
-.resenas-paginacion a.activo {
-  background-color: #f1d400;
-  color: #111;
-}
- 
-.resenas-pag-flecha {
-  background-color: transparent !important;
-  color: #333 !important;
-  font-size: 20px !important;
-  font-weight: 900 !important;
-}
- 
-.resenas-pag-flecha:hover {
-  background-color: transparent !important;
-  color: #111 !important;
-}
- 
-/* compu resena */
-@media (min-width: 900px) {
-  .resenas-hero {
-    padding: 64px 34px 48px;
-  }
- 
-  .resenas-zona-grid {
-    padding: 28px 34px 48px;
-  }
- 
-  .resenas-grid {
-    gap: 14px;
-  }
- 
-  .resenas-paginacion {
-    gap: 10px;
-  }
- 
-  .resenas-paginacion a {
-    width: 40px;
-    height: 40px;
-  }
-}
-/* celu resena */
-@media (max-width: 520px) {
-  .resenas-hero {
+  .listado-hero {
     padding: 34px 16px 24px;
   }
  
-  .resenas-hero-titulo {
-    font-size: clamp(46px, 18vw, 72px);
+  .listado-hero-titulo {
+    font-size: clamp(30px, 12vw, 56px);
     letter-spacing: 1px;
   }
  
-  .resenas-zona-grid {
+  .listado-zona-grid {
     padding: 14px 12px 28px;
   }
  
-  .resenas-grid {
+  .listado-grid {
     gap: 6px;
   }
 }
+/* ─────────────────────────────────────────────
+   MODAL: "Iniciá sesión" para calificar (Top 5)
+   Mismo lenguaje visual que el dropdown del
+   ícono de perfil (sesion.js): fondo oscuro,
+   borde amarillo, tipografía Montserrat.
+───────────────────────────────────────────── */
+.modal-sesion-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-/* ================================================================
-   PÁGINA DE PERFIL DE USUARIO — cuenta.html
-   ================================================================ */
-
-/* Íconos de usuario y búsqueda en la barra (desktop) */
-.barra-iconos {
+.modal-sesion-overlay.oculto {
   display: none;
-  align-items: center;
-  gap: 18px;
-  position: absolute;
-  right: 28px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-.barra-icono-usuario,
-.barra-icono-buscar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #f4f4f4;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.barra-icono-usuario:hover,
-.barra-icono-buscar:hover,
-.barra-icono-usuario.activo {
-  color: #e5d600;
-}
-
-/* Sección contenedora del perfil */
-.perfil-seccion {
-  background-color: #fff;
-  padding: 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-/* Card principal del perfil */
-.perfil-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 22px 28px;
-}
-
-/* Avatar circular */
-.perfil-avatar {
-  flex-shrink: 0;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background-color: #c8c8c8;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.perfil-avatar svg {
-  width: 80px;
-  height: 80px;
-}
-
-/* Info: nombre y email */
-.perfil-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.perfil-nombre {
-  margin: 0 0 4px;
-  font-size: 28px;
-  font-weight: 900;
+.modal-sesion-caja {
+  position: relative;
+  background: #1a1a1a;
+  border: 1.5px solid #e5d600;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 320px;
+  padding: 32px 22px 24px;
   font-family: 'Montserrat', sans-serif;
-  color: #111;
-  line-height: 1.1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.perfil-email {
-  display: inline-block;
-  color: #c9a800;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.perfil-email:hover {
-  text-decoration: underline;
-}
-
-/* Bloque derecho: stats + config + logout */
-.perfil-derecha {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.perfil-stats-fila {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Cada estadística */
-.perfil-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.15;
-}
-
-.perfil-stat-numero {
-  font-size: 26px;
-  font-weight: 900;
-  font-family: 'Montserrat', sans-serif;
-  color: #111;
-}
-
-.perfil-stat-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: #555;
   text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .55);
 }
 
-/* Ícono de configuración */
-.perfil-config {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.3s ease;
+.modal-sesion-caja h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #e5d600;
+  letter-spacing: .03em;
 }
 
-.perfil-config svg {
-  width: 26px;
-  height: 26px;
-}
-
-.perfil-config:hover {
-  color: #111;
-  transform: rotate(45deg);
-}
-
-/* Botón cerrar sesión */
-.perfil-cerrar-sesion {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 16px;
-  background-color: #1f1f1f;
-  color: #fff;
-  border: none;
+.modal-sesion-caja p {
+  margin: 0 0 18px;
   font-size: 12px;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: lowercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  color: #bbb;
+  line-height: 1.4;
 }
 
-.perfil-cerrar-sesion:hover {
-  background-color: #e5d600;
+.modal-sesion-campo {
+  width: 100%;
+  box-sizing: border-box;
+  background: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #f4f4f4;
+  padding: 9px 11px;
+  font-size: 13px;
+  font-family: inherit;
+  margin-bottom: 8px;
+}
+
+.modal-sesion-campo:focus {
+  outline: none;
+  border-color: #e5d600;
+}
+
+.modal-sesion-btn {
+  width: 100%;
+  background: #e5d600;
   color: #111;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 6px;
 }
 
-/* ── Responsive del perfil ─────────────────────────────────── */
-
-@media (min-width: 900px) {
-  .barra-iconos {
-    display: flex;
-  }
+.modal-sesion-btn:hover {
+  background: #ffd700;
 }
 
-@media (max-width: 600px) {
-  .perfil-card {
-    flex-wrap: wrap;
-    padding: 18px 16px;
-    gap: 16px;
-  }
+.modal-sesion-cerrar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
 
-  .perfil-avatar {
-    width: 72px;
-    height: 72px;
-  }
+.modal-sesion-cerrar:hover {
+  color: #fff;
+}
 
-  .perfil-avatar svg {
-    width: 64px;
-    height: 64px;
-  }
-
-  .perfil-nombre {
-    font-size: 22px;
-  }
-
-  .perfil-derecha {
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .perfil-stat-numero {
-    font-size: 22px;
-  }
+.modal-sesion-error {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin: 8px 0 0;
+  display: none;
 }
