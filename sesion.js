@@ -138,6 +138,7 @@
       .modal-sesion-campo  { padding: 11px 14px 11px 40px; font-size: 13px; }
       .modal-sesion-btn    { padding: 12px; font-size: 13px; }
     }
+
   `;
 
   var modalHTML = `
@@ -322,14 +323,13 @@
   }
 
   /* ─────────────────────────────────────────────
-     ÍCONO DE USUARIO → va a cuenta.html
+     ÍCONO DE USUARIO → siempre va a cuenta.html
   ───────────────────────────────────────────── */
   function initIconos() {
     document.querySelectorAll(".barra-icono-usuario").forEach(function (icono) {
-      if (!icono.dataset.sesionInit) {
-        icono.dataset.sesionInit = "1";
-        icono.setAttribute("href", "cuenta.html");
-      }
+      if (icono.dataset.sesionInit) return;
+      icono.dataset.sesionInit = "1";
+      icono.setAttribute("href", "cuenta.html");
     });
   }
 
