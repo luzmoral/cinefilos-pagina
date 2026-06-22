@@ -271,67 +271,14 @@
     inyectarEstilos();
     actualizarIcono();
 
-    /* En cuenta.html el ícono sigue siendo un link normal;
-       el logout lo maneja cuenta.js. Sólo actualizamos el color. */
-    var esCuentaHtml = window.location.pathname.endsWith("cuenta.html");
-    if (esCuentaHtml) return;
-
+    /* En todas las páginas el ícono navega directo a cuenta.html.
+       El login/registro se maneja dentro de cuenta.html. */
     var iconos = document.querySelectorAll(".barra-icono-usuario");
-
     iconos.forEach(function (icono) {
-      /* Evitar doble inicialización */
-      if (icono.dataset.sesionInit) return;
-      icono.dataset.sesionInit = "1";
-
-      /* Convertir <a> en botón visual (mantener accesibilidad) */
-      icono.removeAttribute("href");
-      icono.setAttribute("role", "button");
-      icono.setAttribute("tabindex", "0");
-      icono.style.cursor = "pointer";
-
-      /* Crear wrapper relativo */
-      var wrapper = document.createElement("div");
-      wrapper.className = "barra-icono-usuario-wrapper";
-      icono.parentNode.insertBefore(wrapper, icono);
-      wrapper.appendChild(icono);
-
-      /* Crear dropdown */
-      var dropdown = document.createElement("div");
-      dropdown.className = "sesion-dropdown oculto";
-      wrapper.appendChild(dropdown);
-
-      function abrirDropdown() {
-        renderDropdown(dropdown);
-        dropdown.classList.remove("oculto");
+      if (!icono.dataset.sesionInit) {
+        icono.dataset.sesionInit = "1";
+        icono.setAttribute("href", "cuenta.html");
       }
-
-      function cerrarDropdown() {
-        dropdown.classList.add("oculto");
-      }
-
-      /* Toggle al hacer click en el ícono */
-      icono.addEventListener("click", function (e) {
-        e.stopPropagation();
-        if (dropdown.classList.contains("oculto")) {
-          abrirDropdown();
-        } else {
-          cerrarDropdown();
-        }
-      });
-
-      icono.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          icono.click();
-        }
-      });
-
-      /* Cerrar al hacer click fuera */
-      document.addEventListener("click", function (e) {
-        if (!wrapper.contains(e.target)) {
-          cerrarDropdown();
-        }
-      });
     });
   }
 
