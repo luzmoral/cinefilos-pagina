@@ -293,12 +293,25 @@
   }
 
   .comentario-card {
-    width: 230px;
-    height: 220px;
+    width: clamp(220px, 75vw, 300px);
+    height: clamp(200px, 55vw, 260px);
+    flex-shrink: 0;
   }
 
   .perfil-bloque-titulo {
     font-size: 22px;
+  }
+
+  .comentario-nombre {
+    font-size: clamp(12px, 3.5vw, 14px);
+  }
+
+  .comentario-pelicula {
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+
+  .comentario-texto {
+    font-size: clamp(11px, 3vw, 13px);
   }
 }
 /* favoritos vacio*/
@@ -474,11 +487,17 @@
 
 @media (max-width: 768px) {
   .calificacion-card {
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
+    width: clamp(140px, 38vw, 200px);
+    min-width: clamp(140px, 38vw, 200px);
+    max-width: clamp(140px, 38vw, 200px);
+  }
+
+  .calificacion-card-estrellas {
+    font-size: clamp(15px, 4vw, 19px);
+    letter-spacing: clamp(1px, 0.8vw, 3px);
   }
 }
+
 /* Botón "×" para eliminar favoritos / comentarios / calificaciones */
 .fav-card,
 .comentario-card,
