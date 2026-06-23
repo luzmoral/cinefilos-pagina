@@ -109,7 +109,7 @@
         <button class="carrusel-flecha carrusel-flecha-derecha" type="button" aria-label="Ver noticia siguiente">&#10095;</button>
 
         <div class="carrusel-pista">
-          <a class="mini-noticia" href="noticia1.html">
+          <a class="mini-noticia" href="laEmpleada.html">
             <img src="imagenes/spielberg.png" alt="" class="carrusel-imagen">
             <span class="mini-noticia-texto mini-noticia-texto-grande">Lo mejor de Spielberg en este siglo? Que dice la critica sobre “El dia de la Revelación”</span>
           </a>
@@ -146,7 +146,7 @@
           <div class="lml-carrusel-superior">
             <div class="lml-carrusel-pista">
 
-              <a class="lml-noticia" href="noticia3.html">
+              <a class="lml-noticia" href="laEmpleada.html">
                 <img src="imagenes/criaturas luminosas.png" alt="Noticia 1">
                 <span class="lml-noticia-texto">La historia real detras de Criaturas Luminosas, la pelicula que emociona y arrasa en Netflx </span>
               </a>
@@ -251,7 +251,7 @@
             <span class="carrusel-etiqueta-texto">La pelicula premiada en cannes que no te podes perder en hbo </span>
           </a>
  
-          <a class="carrusel-etiqueta-item" href="noticia2.html">
+          <a class="carrusel-etiqueta-item" href="laEmpleada.html">
             <img src="imagenes/recomendados 2.png" alt="Recomendado 2">
             <span class="carrusel-etiqueta-texto">La casa de los espiritus: otro gran triunfo de las historias locales  </span>
           </a>
@@ -294,7 +294,7 @@
 
 <footer class="footer">
       <div class="footer-logo" aria-label="Cinefilos" >
-        <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
+        <img src="imagenes/logo.png" alt="Cinefilos" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
       </div>
 
   <p class="footer-texto">
@@ -566,6 +566,55 @@
     // Recomendados y Entrevistas
   document.querySelectorAll(".carrusel-etiqueta-pista").forEach(function(pista) {
     habilitarArrastreSimple(pista);
+  });
+
+  // Efecto "centro grande" en mobile: detecta el item más centrado
+  // y le aplica la clase activo-carrusel solo en pantallas chicas
+  function iniciarCarruselCentro(pista) {
+    var items = Array.from(pista.querySelectorAll(".carrusel-etiqueta-item"));
+    if (!items.length) return;
+
+    function actualizarActivo() {
+      // Solo aplica en mobile (max 899px)
+      if (window.innerWidth >= 900) {
+        items.forEach(function(it) { it.classList.remove("activo-carrusel"); });
+        return;
+      }
+      var centro = pista.scrollLeft + pista.offsetWidth / 2;
+      var masProximo = null;
+      var distMin = Infinity;
+      items.forEach(function(item) {
+        var itemCentro = item.offsetLeft + item.offsetWidth / 2;
+        var dist = Math.abs(centro - itemCentro);
+        if (dist < distMin) { distMin = dist; masProximo = item; }
+      });
+      items.forEach(function(it) { it.classList.remove("activo-carrusel"); });
+      if (masProximo) masProximo.classList.add("activo-carrusel");
+    }
+
+    // Inicializar: centrar en el item del medio
+    function centrarInicio() {
+      if (window.innerWidth >= 900) return;
+      var medio = items[Math.floor(items.length / 2)];
+      if (!medio) return;
+      var scrollIdeal = medio.offsetLeft + medio.offsetWidth / 2 - pista.offsetWidth / 2;
+      pista.scrollLeft = scrollIdeal;
+      actualizarActivo();
+    }
+
+    pista.addEventListener("scroll", actualizarActivo, { passive: true });
+    window.addEventListener("resize", function() { centrarInicio(); actualizarActivo(); });
+
+    // Esperar a que el layout esté listo
+    if (document.readyState === "complete") {
+      centrarInicio();
+    } else {
+      window.addEventListener("load", centrarInicio);
+    }
+  }
+
+  document.querySelectorAll(".carrusel-etiqueta-pista").forEach(function(pista) {
+    iniciarCarruselCentro(pista);
   });
 
   // Evita el arrastre nativo de imágenes (drag-and-drop del navegador) en
