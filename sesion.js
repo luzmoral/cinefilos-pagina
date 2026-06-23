@@ -31,9 +31,7 @@
     document.dispatchEvent(new CustomEvent("cinefilo:sesion", { detail: { logueado: false } }));
   }
 
-  /* ─────────────────────────────────────────────
-     MODAL HTML — se inyecta en TODAS las páginas
-  ───────────────────────────────────────────── */
+  /* MODAL se inyecta en TODAS las páginas */
   var estilosModal = `
     /* ── overlay ── */
     .modal-sesion-overlay {
@@ -192,9 +190,7 @@
     </div>
   `;
 
-  /* ─────────────────────────────────────────────
-     ÍCONO: amarillo si hay sesión
-  ───────────────────────────────────────────── */
+  /*icono amrillo si hay sesion*/
   function actualizarIcono() {
     var logueado = !!obtenerUsuario();
     document.querySelectorAll(".barra-icono-usuario").forEach(function (icono) {
@@ -260,7 +256,7 @@
     document.getElementById("modal-ir-login").addEventListener("click", function () { mostrarPanel(panelLogin); });
     document.getElementById("modal-ir-registro").addEventListener("click", function () { mostrarPanel(panelReg); });
 
-    /* ── Registro ── */
+    /*  Registro */
     var regNombre = document.getElementById("modal-reg-nombre");
     var regEmail  = document.getElementById("modal-reg-email");
     var regPass   = document.getElementById("modal-reg-pass");
@@ -294,7 +290,7 @@
       });
     });
 
-    /* ── Login ── */
+    /* Login */
     var loginEmail = document.getElementById("modal-login-email");
     var loginPass  = document.getElementById("modal-login-pass");
     var loginError = document.getElementById("modal-login-error");
@@ -322,9 +318,7 @@
     });
   }
 
-  /* ─────────────────────────────────────────────
-     ÍCONO DE USUARIO → siempre va a cuenta.html
-  ───────────────────────────────────────────── */
+  /* el icono siempre va a cuenta*/
   function initIconos() {
     document.querySelectorAll(".barra-icono-usuario").forEach(function (icono) {
       if (icono.dataset.sesionInit) return;
