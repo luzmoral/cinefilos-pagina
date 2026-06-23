@@ -71,6 +71,11 @@
         <button class="carrusel-flecha carrusel-flecha-derecha" type="button" aria-label="Ver noticia siguiente">&#10095;</button>
 
         <div class="carrusel-pista">
+          <a class="mini-noticia" href="noticia2.html">
+            <img src="imagenes/fede alvarez.png" alt="" class="carrusel-imagen carrusel-imagen-fede">
+            <span class="mini-noticia-texto mini-noticia-texto-grande">Entrevista a Fede Álvarez por el estreno de Alien: Romulus</span>
+          </a>
+          
           <a class="mini-noticia" href="noticia1.html">
             <img src="imagenes/spielberg.png" alt="" class="carrusel-imagen">
             <span class="mini-noticia-texto mini-noticia-texto-grande">Lo mejor de Spielberg en este siglo? Que dice la critica sobre “El dia de la Revelación”</span>
@@ -86,10 +91,6 @@
             <span class="mini-noticia-texto mini-noticia-texto-grande">Un varón: la película colombiana que tuvo su estreno mundial en el FICPBA</span>
           </a>
 
-          <a class="mini-noticia" href="noticia2.html">
-            <img src="imagenes/fede alvarez.png" alt="" class="carrusel-imagen carrusel-imagen-fede">
-            <span class="mini-noticia-texto mini-noticia-texto-grande">Entrevista a Fede Álvarez por el estreno de Alien: Romulus</span>
-          </a>
         </div>
 
         <div class="carrusel-puntos" aria-hidden="true">
@@ -193,16 +194,6 @@
   const botonBuscar = document.querySelector(".boton-buscar-mobile");
   const barra = document.querySelector(".barra");
   const campoBuscar = document.querySelector(".buscador input");
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const pista = document.querySelector(".carrusel-comunidad .carrusel-pista");
-    if (pista) {
-      const items = pista.querySelectorAll(".mini-noticia");
-      if (items[1]) {
-        pista.scrollTo({ left: items[1].offsetLeft, behavior: "instant" });
-      }
-    }
-  });
 
   botonMenu.addEventListener("click", function () {
     barra.classList.toggle("abierto");
