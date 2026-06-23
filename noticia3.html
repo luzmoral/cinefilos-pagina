@@ -210,11 +210,11 @@
  <section class="recomendaciones">
         <h3>Según tus calificaciones anteriores te puede <span class="texto-amarillo">interesar</span></h3>
         <div class="cuadricula-recomendaciones">
-            <div class="caja-recomendacion">
+            <a href="noticia2.html" class="caja-recomendacion">
                 <img src="imagenes/recomedados 3.png" alt="">
                 <p>Las 10 mejores biopics de los últimos años</p>
             </div>
-            <div class="caja-recomendacion">
+           <a href="noticia4.html" class="caja-recomendacion">
             <img src="imagenes/parisjackson.png" alt="paris jackson">
             <p>Paris Jackson sobre la biopic de Michael: “Hay muchas mentiras”</p>
             </div>
@@ -228,22 +228,6 @@
 
 </main>
 
-<!-- MODAL DE REGISTRO / LOGIN -->
-<div id="modal-registro" class="superposicion-modal" style="display: none;">
-    <div class="contenido-modal modal-chico">
-        <button id="cerrar-modal-registro" class="btn-cerrar">&times;</button>
-        <div class="cuerpo-modal-registro">
-            <h3>Únete a la Comunidad</h3>
-            <p>Ingresá tus datos para calificar y dejar tu reseña.</p>
-            <form id="formulario-registro-real" class="formulario-estilo">
-                <input type="text" id="reg-nombre" placeholder="Tu Nombre de Usuario" required maxlength="20">
-                <input type="email" id="reg-email" placeholder="Correo electrónico" required>
-                <input type="password" id="reg-pass" placeholder="Contraseña" required>
-                <button type="submit" class="btn-calificar">REGISTRARSE / INGRESAR</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL DE RANKING (PODIO) -->
 <div id="modal-ranking" class="superposicion-modal" style="display: none;">
@@ -281,9 +265,9 @@
 
 <script src="interaccion.js"></script> 
 <footer class="footer">
-  <div class="footer-logo" aria-label="Cinefilos">
-    <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
-  </div>
+      <div class="footer-logo" aria-label="Cinefilos" >
+        <img src="imagenes/logo.png" alt="Cinefilos" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+      </div>
  
   <p class="footer-texto">
     Somos una comunidad apasionada por el cine, donde compartimos
