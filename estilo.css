@@ -774,16 +774,28 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1px;
-  min-width: 150px;
-  height: 46px;
+  height: 50px;
   margin-bottom: 26px;
-  padding: 0 24px;
+  padding: 0 14px;
   background-color: #111;
   color: #fff;
   border-radius: 999px;
   font-size: 17px;
   font-weight: 800;
   letter-spacing: 1px;
+}
+
+.footer-logo img {
+  display: block;
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+}
+
+.footer-logo-texto {
+  display: none;
+  align-items: center;
+  gap: 1px;
 }
 
 .footer-logo strong {
@@ -1416,6 +1428,15 @@ body {
 
 /*compu*/
 @media (min-width: 900px) {
+  .footer-logo {
+    height: 66px;
+    padding: 0 20px;
+  }
+
+  .footer-logo img {
+    height: 50px;
+  }
+
   .footer-texto {
     max-width: 720px;
     font-size: 18px;
