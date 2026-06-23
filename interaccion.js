@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Elementos Globales
     const inputComunidad = document.getElementById("input-comunidad");
-    const modalRegistro = document.getElementById("modal-registro");
-    const btnCerrarModalRegistro = document.getElementById("cerrar-modal-registro");
-    const formularioRegistro = document.getElementById("formulario-registro-real");
     
     // Elementos de Reseña Izquierda
     const formResenaDesplegable = document.getElementById("formulario-resena-especifica");
@@ -31,42 +28,27 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     actualizarInterfazUsuario();
 
-    // Modales de Registro y Podio
-    const abrirModalRegistro = () => { modalRegistro.style.display = "flex"; };
-    const cerrarModalRegistro = () => { modalRegistro.style.display = "none"; };
+    // Mantenerse sincronizado con el modal global de sesión (sesion.js)
+    document.addEventListener("cinefilo:sesion", (e) => {
+        usuarioLogueado = JSON.parse(localStorage.getItem("usuarioCinefilo")) || null;
+        if (e.detail && e.detail.logueado) {
+            actualizarInterfazUsuario();
+        }
+    });
 
-    if(btnCerrarModalRegistro) btnCerrarModalRegistro.addEventListener("click", cerrarModalRegistro);
+    // Abrir el modal global de registro/login (definido en sesion.js)
+    const abrirModalRegistro = () => {
+        if (window.abrirModalIniciarSesion) {
+            window.abrirModalIniciarSesion();
+        }
+    };
+
+    // Cierre del modal del podio (ranking)
     if(btnCerrarModalRanking) btnCerrarModalRanking.addEventListener("click", () => { modalRanking.style.display = "none"; });
 
     window.addEventListener("click", (e) => { 
-        if (e.target === modalRegistro) cerrarModalRegistro(); 
         if (e.target === modalRanking) modalRanking.style.display = "none";
     });
-
-    // Registro Simulado
-    if(formularioRegistro){
-        formularioRegistro.addEventListener("submit", (e) => {
-            e.preventDefault();
-            
-            const nombre = document.getElementById("reg-nombre").value.trim();
-            const email = document.getElementById("reg-email").value.trim();
-            const pass = document.getElementById("reg-pass").value;
-
-            if (nombre && email && pass) {
-                usuarioLogueado = { nombre, email };
-                localStorage.setItem("usuarioCinefilo", JSON.stringify(usuarioLogueado));
-                /* Compatibilidad con cuenta.js */
-                localStorage.setItem("usuario_nombre", nombre);
-                localStorage.setItem("usuario_email",  email);
-                
-                actualizarInterfazUsuario();
-                cerrarModalRegistro();
-                alert(`¡Bienvenido/a a la comunidad, ${nombre}! Ya podés interactuar.`);
-                
-                formularioRegistro.reset();
-            }
-        });
-    }
 
     const verificarSesion = (evento) => {
         if (!usuarioLogueado) {
