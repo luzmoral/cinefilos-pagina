@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var CLAVE_COMENTARIOS = "cinefilo_comentarios";
   var CLAVE_CALIFICACIONES = "cinefilo_calificaciones";
 
-  /* ── Ícono de usuario: amarillo si hay sesión ── */
+  /* Ícono de usuario: amarillo si hay sesión */
   var iconoUsuario = document.querySelector(".barra-icono-usuario");
   var usuario = obtenerUsuario();
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     iconoUsuario.style.color = "#e5d600";
   }
 
-  /* ── Lógica exclusiva de cuenta.html ── */
+  /* Lógica exclusiva de cuenta */
   var btnCerrar = document.getElementById("btn-cerrar-sesion");
   var btnRegistrate = document.getElementById("btn-registrate");
   if (!btnCerrar) return;
@@ -78,7 +78,7 @@ btnRegistrate.addEventListener("click", function () {
     cerrarSesion();
   });
 
-  /* ── Modal de sesión para cuenta.html (igual al del index) ── */
+  /* Modal de sesión para cuenta*/
   function abrirModalSesion() {
     /* Si ya existe, solo mostrarlo */
     var modalExistente = document.getElementById("modal-iniciar-sesion");
@@ -216,8 +216,7 @@ btnRegistrate.addEventListener("click", function () {
     }
   });
 
-  /* ─────────────── Funciones auxiliares ─────────────── */
-
+  /*Funciones auxiliares */
   function obtenerUsuario() {
     try {
       var datos = JSON.parse(localStorage.getItem(CLAVE_USUARIO));
@@ -299,7 +298,7 @@ btnRegistrate.addEventListener("click", function () {
     if (elCalif)        elCalif.textContent         = obtenerCalificaciones().length;
   }
 
-  /* ── Eliminar un favorito, comentario o calificación ── */
+  /* Eliminar un favorito, comentario o calificación */
   function eliminarFavorito(idx) {
     var favs = obtenerFavoritos();
     if (idx < 0 || idx >= favs.length) return;
@@ -326,7 +325,7 @@ btnRegistrate.addEventListener("click", function () {
     actualizarStats();
   }
 
-  /* ─── RENDER FAVORITOS ─── */
+  /* rende favorito */
   function renderFavoritos() {
     var contenedor = document.getElementById("lista-favoritos");
     if (!contenedor) return;
@@ -362,7 +361,7 @@ btnRegistrate.addEventListener("click", function () {
     }
   }
 
-  /* ─── RENDER COMENTARIOS ─── */
+  /* reder comentario */
   function renderComentarios() {
     var contenedor = document.getElementById("lista-comentarios");
     if (!contenedor) return;
