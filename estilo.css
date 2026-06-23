@@ -1357,7 +1357,7 @@ body {
   color: #111;
 }
 
-/* ── Desktop: avatar | info | acciones-top en fila, stats al final ── */
+/* Desktop: avatar, info, acciones-top en fila, stats al final*/
 .perfil-acciones-top {
   display: flex;
   align-items: center;
@@ -1373,7 +1373,7 @@ body {
   margin-left: auto;
 }
 
-/* ── Mobile: avatar+info arriba, botones top-right, stats centrados abajo ── */
+/* Mobile: avatar+info arriba, botones top-right, stats centrados abajo */
 @media (max-width: 600px) {
   .perfil-card {
     display: grid;
@@ -1390,7 +1390,7 @@ body {
     grid-row: 1;
   }
 
-  /* Col 2 fila 1: nombre + email */
+  /* Col 2 fila 1: nombre y email */
   .perfil-info {
     grid-column: 2;
     grid-row: 1;
@@ -2267,12 +2267,7 @@ body {
     padding: 18px;
   }
 }
-/* ─────────────────────────────────────────────
-   MODAL: "Iniciá sesión" para calificar (Top 5)
-   Mismo lenguaje visual que el dropdown del
-   ícono de perfil (sesion.js): fondo oscuro,
-   borde amarillo, tipografía Montserrat.
-───────────────────────────────────────────── */
+/* "Iniciá sesión" */
 .modal-sesion-overlay {
   position: fixed;
   inset: 0;
@@ -2425,7 +2420,7 @@ body {
   display: none;
 }
 
-/* ── Área táctil más grande para las estrellas del Top 5 en mobile ── */
+/* Área táctil más grande para las estrellas del Top 5 en mobile */
 @media (max-width: 768px) {
   .lml-top5-estrella {
     padding: 8px 4px;
