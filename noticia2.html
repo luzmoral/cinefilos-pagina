@@ -34,10 +34,11 @@
       <input type="search" placeholder="Buscar" aria-label="Buscar">
       <button type="submit" aria-label="Buscar">Ir</button>
     </div>
-    <a  href="novedades.html">Novedades</a>
+   
+    <a href="novedades.html">Novedades</a>
     <a class="activo" href="resenas.html">Reseñas</a>
-    <a  href="entrevista.html">Entrevistas</a>
-    <a  href="index.html#recomendados">Recomendados</a>
+    <a href="entrevista.html">Entrevistas</a>
+    <a href="index.html#recomendados">Recomendados</a>
     <a href="index.html#nosotros">Nosotros</a>
     <a href="RankingSemanal.html">Ranking semanal</a>
   </nav>
@@ -201,14 +202,14 @@
         </div>
     </section>
 
-    <section class="recomendaciones">
+   <section class="recomendaciones">
         <h3>Según tus calificaciones anteriores te puede <span class="texto-amarillo">interesar</span></h3>
         <div class="cuadricula-recomendaciones">
-            <div class="caja-recomendacion">
+            <a href="noticia2.html" class="caja-recomendacion">>
                 <img src="imagenes/story.jpg" alt="Toy Story 5">
                 <p>¿Qué dicen las primeras críticas de Toy Story 5?</p>
             </div>
-            <div class="caja-recomendacion">
+         <a href="noticia4.html" class="caja-recomendacion">
             <img src="imagenes/thebear.png" alt="The Bear">
             <p>The Bear presentó el tráiler de su última temporada</p>
             </div>
@@ -222,21 +223,6 @@
 
 </main>
 
-<div id="modal-registro" class="superposicion-modal" style="display: none;">
-    <div class="contenido-modal modal-chico">
-        <button id="cerrar-modal-registro" class="btn-cerrar">&times;</button>
-        <div class="cuerpo-modal-registro">
-            <h3>Únete a la Comunidad</h3>
-            <p>Ingresá tus datos para calificar y dejar tu reseña.</p>
-            <form id="formulario-registro-real" class="formulario-estilo">
-                <input type="text" id="reg-nombre" placeholder="Tu Nombre de Usuario" required maxlength="20">
-                <input type="email" id="reg-email" placeholder="Correo electrónico" required>
-                <input type="password" id="reg-pass" placeholder="Contraseña" required>
-                <button type="submit" class="btn-calificar">REGISTRARSE / INGRESAR</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 <div id="modal-ranking" class="superposicion-modal" style="display: none;">
     <div class="contenido-modal modal-podio">
@@ -274,8 +260,8 @@
 <script src="interaccion.js"></script> 
 
 <footer class="footer">
-      <div class="footer-logo" aria-label="Cinefilos">
-        <span>CINE</span><strong>FILOS</strong><small>&reg;</small>
+      <div class="footer-logo" aria-label="Cinefilos" >
+        <img src="imagenes/logo.png" alt="Cinefilos" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
       </div>
 
       <p class="footer-texto">
