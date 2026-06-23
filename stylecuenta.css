@@ -269,37 +269,50 @@
 }
 
 @media (max-width: 768px) {
-
-  .perfil-bloque {
-    padding: 20px 15px;
-  }
-
-  /* Favoritos: columna apilada, ancho completo */
-  .perfil-scroll-fila--favoritos {
-    flex-direction: column;
-    overflow-x: visible;
+  .perfil-card {
+    flex-wrap: wrap;
+    padding: 18px 16px;
     gap: 12px;
   }
 
-  .perfil-scroll-fila--favoritos .fav-card {
+  .perfil-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .perfil-info {
+    flex: 1 1 auto;
+    min-width: 0; /* clave: permite que el texto se achique/ajuste en vez de desbordar */
+  }
+
+  .perfil-nombre {
+    font-size: 20px;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .perfil-email {
+    font-size: 12px;
+  }
+
+  .perfil-derecha {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    order: 3;
+  }
+
+  .perfil-config-acciones {
+    justify-content: flex-end;
+  }
+
+  .perfil-stats-fila {
+    justify-content: center;
     width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    height: 220px;
   }
 
-  .perfil-scroll-fila--favoritos .fav-card-titulo {
-    font-size: 16px;
-  }
-
-  .comentario-card {
-    width: clamp(220px, 75vw, 300px);
-    height: clamp(200px, 55vw, 260px);
-    flex-shrink: 0;
-  }
-
-  .perfil-bloque-titulo {
-    font-size: 22px;
+  .perfil-stat-numero {
+    font-size: 28px;
   }
 
   .comentario-nombre {
