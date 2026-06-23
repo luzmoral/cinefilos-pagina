@@ -17,7 +17,7 @@
   var CLAVE_USUARIO     = "usuarioCinefilo";
   var MAX_ITEMS         = 4;
 
-  /* ── Leer meta del artículo actual ── */
+  /* Leer meta del artículo actual */
   function getMeta(nombre) {
     var el = document.querySelector('meta[name="' + nombre + '"]');
     return el ? el.getAttribute("content") : "";
@@ -31,7 +31,7 @@
     };
   }
 
-  /* ── localStorage helpers ── */
+  /* localStorage helpers */
   function getFavoritos() {
     try { return JSON.parse(localStorage.getItem(CLAVE_FAVORITOS)) || []; }
     catch (e) { return []; }
@@ -65,12 +65,12 @@
     } catch (e) { return false; }
   }
 
-  /* ── ¿Ya es favorito? ── */
+  /*¿Ya es favorito? */
   function esFavorito(url) {
     return getFavoritos().some(function (f) { return f.url === url; });
   }
 
-  /* ── Guardar / quitar favorito ── */
+  /* Guardar / quitar favorito  */
   function toggleFavorito(info, btn) {
     var favs = getFavoritos();
     var idx  = favs.findIndex(function (f) { return f.url === info.url; });
@@ -100,7 +100,7 @@
     }
   }
 
-  /* ── Guardar comentario ── */
+  /* Guardar comentario */
   function guardarComentario(texto, articulo) {
     var coms = getComentarios();
     coms.unshift({ texto: texto, articulo: articulo, fecha: Date.now() });
@@ -117,7 +117,7 @@
     }
   }
 
-  /* ── Guardar calificación (con datos de la película) ── */
+  /* Guardar calificación (con datos de la película)*/
   function guardarCalificacion(info, valor) {
     var calfs = getCalificaciones();
     var idx   = calfs.findIndex(function (c) { return c.url === info.url; });
@@ -141,7 +141,7 @@
     }
   }
 
-  /* ── Crear botón de favorito e inyectarlo ── */
+  /* Crear botón de favorito e inyectarlo */
   function inyectarBotonFavorito(info) {
     /* Si ya existe, no duplicar */
     if (document.getElementById("btn-guardar-favorito")) return;
@@ -187,7 +187,7 @@
     if (main) main.prepend(btn);
   }
 
-  /* ── HOOK en interaccion.js: escuchar comentarios ── */
+  /* HOOK en interaccion.js: escuchar comentario */
   function hookComentarios(info) {
     /* Esperar a que interaccion.js registre el botón enviar */
     var intento = 0;
