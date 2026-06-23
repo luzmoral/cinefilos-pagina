@@ -1430,11 +1430,11 @@ body {
 @media (min-width: 900px) {
   .footer-logo {
     height: 66px;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   .footer-logo img {
-    height: 50px;
+    height: 80px;
   }
 
   .footer-texto {
@@ -1828,6 +1828,14 @@ body {
   .carrusel-barra-titulo-linea {
     display: block;
   }
+   .footer-logo {
+    height: 66px;
+    padding: 0 10px;
+  }
+
+  .footer-logo img {
+    height: 80px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1961,6 +1969,14 @@ body {
   .redes img {
     width: 42px;
     height: 42px;
+  }
+   .footer-logo {
+    height: 10px;
+    padding: 0 10px;
+  }
+
+  .footer-logo img {
+    height: 80px;
   }
 }
 
@@ -2162,6 +2178,14 @@ body {
   .redes img {
     width: 42px;
     height: 42px;
+  }
+   .footer-logo {
+    height: 45px;
+    padding: 0 10px;
+  }
+
+  .footer-logo img {
+    height: 80px;
   }
 
   .carrusel-etiqueta {
