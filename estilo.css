@@ -238,6 +238,36 @@ body {
     radial-gradient(circle at 50% 100%, rgba(164, 139, 0, 0.75), transparent 45%),
     linear-gradient(180deg, #050505 0%, #0b0900 55%, #211b00 100%);
 }
+
+/* Quita el degrade amarillo solo en el carrusel de comunidad de las
+   páginas de listado (novedades, reseñas, entrevistas). No afecta al
+   carrusel del index porque ese no tiene la clase .carrusel-listado. */
+.carrusel-noticias.carrusel-listado {
+  background: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* En las páginas de listado (novedades, reseñas, entrevistas) el
+   carrusel funciona solo con flechas: se ocultan los puntos. */
+.carrusel-listado .carrusel-puntos {
+  display: none;
+}
+
+/* La barra amarilla queda pegada arriba del carrusel, tocando el
+   borde superior de las fotos, en vez de superpuesta sobre ellas.
+   Se usa translateY(-100%) en lugar de un "top" fijo en píxeles
+   para que funcione igual de bien en celular y en computadora,
+   sin importar cuánto cambie la altura de la barra según el
+   tamaño de pantalla o la cantidad de texto.
+   Nota: esta regla necesita más especificidad que
+   ".carrusel-comunidad .carrusel-barra-titulo" (más abajo en este
+   archivo) para poder ganarle en la cascada; si tuviera la misma
+   especificidad, esa otra regla la pisaría sin que se note el cambio. */
+.carrusel-noticias.carrusel-listado .carrusel-comunidad .carrusel-barra-titulo {
+  top: 0;
+  transform: translate(-50%, -100%);
+}
 .carrusel-barra-titulo {
   margin: 0 24px 14px;
   padding: 8px 16px;
@@ -399,7 +429,7 @@ body {
   font-size: 12px;
   font-weight: 900;
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .mini-noticia-texto {
@@ -1017,7 +1047,7 @@ body {
 /* Hero de la sección */
 .listado-hero {
   
-  padding: 54px 24px 48px;
+  padding: 54px 24px 0;
   text-align: center;
 }
 
@@ -1372,44 +1402,207 @@ body {
   gap: 20px;
   margin-left: auto;
 }
+/* "Iniciá sesión" */
+.modal-sesion-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-/* Mobile: avatar+info arriba, botones top-right, stats centrados abajo */
+.modal-sesion-overlay.oculto {
+  display: none;
+}
+
+.modal-sesion-caja {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 340px;
+  padding: 36px 28px 28px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-sesion-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-sesion-cerrar:hover {
+  color: #111;
+}
+
+.modal-sesion-titulo {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 900;
+  color: #111;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+
+.modal-sesion-subtexto {
+  margin: 0 0 20px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Campos con ícono */
+.modal-campo-icono {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.modal-campo-icono svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  stroke: #e5d600;
+  pointer-events: none;
+}
+
+.modal-sesion-campo {
+  width: 100%;
+  box-sizing: border-box;
+  background: #111;
+  border: none;
+  border-radius: 50px;
+  color: #f4f4f4;
+  padding: 13px 16px 13px 44px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.modal-sesion-campo::placeholder {
+  color: #888;
+}
+
+.modal-sesion-campo:focus {
+  outline: 2px solid #e5d600;
+  outline-offset: 0;
+}
+
+.modal-sesion-btn {
+  width: 100%;
+  background: #e5d600;
+  color: #111;
+  border: none;
+  border-radius: 50px;
+  padding: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background .18s ease;
+}
+
+.modal-sesion-btn:hover {
+  background: #ffd700;
+}
+
+.modal-sesion-cambiar {
+  margin: 16px 0 0;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+}
+
+.modal-sesion-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-sesion-link:hover {
+  color: #c9a800;
+}
+
+.modal-sesion-error {
+  color: #cc0000;
+  font-size: 11px;
+  margin: 6px 0 0;
+  display: none;
+  padding-left: 4px;
+}
+
+.modal-sesion-panel.oculto {
+  display: none;
+}
+
+/* Mobile: fila 1 = botones (registrate + engranaje), fila 2 = avatar + nombre, fila 3 = stats */
 @media (max-width: 600px) {
   .perfil-card {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
     gap: 14px 12px;
-    align-items: start;
-    padding: 18px 16px 22px;
+    padding: 14px 16px 20px;
   }
 
-  /* Col 1 fila 1: avatar */
-  .perfil-avatar {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  /* Col 2 fila 1: nombre y email */
-  .perfil-info {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
-  }
-
-  /* Col 3 fila 1: botones arriba a la derecha */
+  /* Fila 1: Registrate y engranaje alineados a la derecha */
   .perfil-acciones-top {
-    grid-column: 3;
-    grid-row: 1;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    order: 1;
+    flex: 0 0 100%;
   }
 
-  /* Fila 2: stats centrados, ocupan las 3 columnas */
+  /* Fila 2: avatar a la izquierda */
+  .perfil-avatar {
+    order: 2;
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+  }
+
+  /* Fila 2: nombre ocupa el resto del ancho al lado del avatar */
+  .perfil-info {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .perfil-nombre {
+    font-size: clamp(18px, 5.5vw, 26px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Fila 3: stats centrados */
   .perfil-card .perfil-stats-fila {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    flex: 0 0 100%;
+    order: 3;
     justify-content: center;
     gap: 40px;
     margin-left: 0;
@@ -1840,29 +2033,29 @@ body {
 
 @media (max-width: 600px) {
   /* Tarjetas de Novedades / Reseñas / Entrevistas / Recomendados:
-     en una sola columna, así no se achican y el texto no se encima
-     con la foto. */
+     2 columnas en todos los celulares, cards más altas para que
+     el texto no se encime con la foto. */
   .listado-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
   .listado-card {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 4;
   }
 
   .listado-card-overlay {
-    padding: 16px;
+    padding: 10px;
   }
 
   .listado-card-badge {
-    font-size: 11px;
-    padding: 6px 12px;
+    font-size: 9px;
+    padding: 5px 8px;
   }
 
   .listado-card-titulo {
-    font-size: clamp(18px, 4.8vw, 22px);
-    line-height: 1.3;
+    font-size: clamp(12px, 3.4vw, 16px);
+    line-height: 1.25;
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
@@ -2241,7 +2434,7 @@ body {
   }
 
   .listado-hero {
-    padding: 34px 16px 24px;
+    padding: 34px 16px 0;
   }
  
   .listado-hero-titulo {
@@ -2254,170 +2447,18 @@ body {
   }
  
   .listado-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
   .listado-card-titulo {
-    font-size: clamp(19px, 5.6vw, 23px);
-    line-height: 1.32;
+    font-size: clamp(13px, 3.8vw, 18px);
+    line-height: 1.25;
   }
 
   .listado-card-overlay {
-    padding: 18px;
+    padding: 10px;
   }
-}
-/* "Iniciá sesión" */
-.modal-sesion-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, .75);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal-sesion-overlay.oculto {
-  display: none;
-}
-
-.modal-sesion-caja {
-  position: relative;
-  background: #fff;
-  border-radius: 14px;
-  width: 100%;
-  max-width: 340px;
-  padding: 36px 28px 28px;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.modal-sesion-cerrar {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.modal-sesion-cerrar:hover {
-  color: #111;
-}
-
-.modal-sesion-titulo {
-  margin: 0 0 10px;
-  font-size: 22px;
-  font-weight: 900;
-  color: #111;
-  line-height: 1.15;
-  letter-spacing: -.01em;
-  text-transform: uppercase;
-}
-
-.modal-sesion-subtexto {
-  margin: 0 0 20px;
-  font-size: 12px;
-  color: #666;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-/* Campos con ícono */
-.modal-campo-icono {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.modal-campo-icono svg {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  stroke: #e5d600;
-  pointer-events: none;
-}
-
-.modal-sesion-campo {
-  width: 100%;
-  box-sizing: border-box;
-  background: #111;
-  border: none;
-  border-radius: 50px;
-  color: #f4f4f4;
-  padding: 13px 16px 13px 44px;
-  font-size: 13px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-}
-
-.modal-sesion-campo::placeholder {
-  color: #888;
-}
-
-.modal-sesion-campo:focus {
-  outline: 2px solid #e5d600;
-  outline-offset: 0;
-}
-
-.modal-sesion-btn {
-  width: 100%;
-  background: #e5d600;
-  color: #111;
-  border: none;
-  border-radius: 50px;
-  padding: 13px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: background .18s ease;
-}
-
-.modal-sesion-btn:hover {
-  background: #ffd700;
-}
-
-.modal-sesion-cambiar {
-  margin: 16px 0 0;
-  font-size: 12px;
-  color: #888;
-  text-align: center;
-}
-
-.modal-sesion-link {
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: #111;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.modal-sesion-link:hover {
-  color: #c9a800;
-}
-
-.modal-sesion-error {
-  color: #cc0000;
-  font-size: 11px;
-  margin: 6px 0 0;
-  display: none;
-  padding-left: 4px;
-}
-
-.modal-sesion-panel.oculto {
-  display: none;
 }
 
 /* Área táctil más grande para las estrellas del Top 5 en mobile */
@@ -2434,5 +2475,155 @@ body {
 
   .lml-top5-estrellas-iconos {
     gap: 0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 540px) {
+
+  /* ── Header ── */
+  .barra {
+    height: 72px;
+  }
+
+  .barra-logo img {
+    width: 190px;
+  }
+
+  .menu {
+    left: 18px;
+  }
+
+  .barra > .barra-icono-usuario,
+  .barra .barra-icono-usuario-wrapper {
+    right: 20px;
+  }
+
+  /* ── Hero título (Novedades / Reseñas / Entrevistas) ── */
+  .listado-hero {
+    padding: 28px 14px 0;
+  }
+
+  .listado-hero-titulo {
+    font-size: clamp(32px, 11vw, 48px);
+    letter-spacing: 1px;
+  }
+
+  /* ── Grilla 2 columnas, cards con proporción vertical ── */
+  .listado-zona-grid {
+    padding: 12px 10px 24px;
+  }
+
+  .listado-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .listado-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .listado-card-overlay {
+    padding: 10px;
+  }
+
+  .listado-card-badge {
+    font-size: 9px;
+    padding: 5px 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .listado-card-titulo {
+    font-size: clamp(12px, 3.2vw, 15px);
+    line-height: 1.25;
+  }
+
+  /* ── Paginación ── */
+  .listado-paginacion {
+    gap: 6px;
+  }
+
+  .listado-paginacion a {
+    min-width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  /* ── Carrusel comunidad ── */
+  .carrusel-comunidad .mini-noticia {
+    height: 340px;
+  }
+
+  .carrusel-comunidad .mini-noticia-texto {
+    font-size: 16px;
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+  }
+
+  .carrusel-comunidad .carrusel-barra-titulo {
+    font-size: clamp(9px, 2.6vw, 11px);
+    padding: 18px 14px 18px;
+    letter-spacing: 0;
+    white-space: normal;
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 66% 55%, 62% 100%, 38% 100%, 34% 55%, 0 55%);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 24px 16px 20px;
+  }
+
+  .footer-texto {
+    font-size: 14px;
+  }
+
+  .redes {
+    gap: 16px;
+  }
+
+  .redes a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .redes img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .footer-links {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  /* ── Carrusel recomendados (etiqueta) ── */
+  .carrusel-etiqueta-item {
+    flex: 0 0 60vw;
+    height: 80vw;
+    margin: 0 3vw;
+  }
+
+  /* ── Lo más leído ── */
+  .lml-noticia {
+    flex: 0 0 46vw;
+    height: 65vw;
+  }
+
+  .lml-top5-item {
+    flex: 0 0 46vw;
+  }
+
+  .lml-top5-media {
+    height: 65vw;
+  }
+
+  /* ── Noticia detalle ── */
+  .noticia-detalle h1 {
+    font-size: 22px;
+  }
+
+  .noticia-detalle-texto {
+    padding: 18px;
+    font-size: 15px;
   }
 }
