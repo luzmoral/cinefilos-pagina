@@ -2,7 +2,6 @@
  * carrusel.js — Lógica de las flechas, arrastre y puntos para los
  * carruseles de tipo ".carrusel-noticias" (ej: "Los favoritos de la
  * comunidad" en entrevista.html, novedades.html, resenas.html, etc.)
- *
  * La misma lógica vive embebida en index.html; este archivo permite
  * reutilizarla en el resto de las páginas sin duplicar código.
  */
