@@ -98,6 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (calificacionActual === 0) {
                     alert("¡Elegí una cantidad de estrellas primero!");
                 } else {
+                    // Ocultamos el formulario de reseña por si había quedado abierto
+                    if (formResenaDesplegable) formResenaDesplegable.style.display = "none";
                     // SE ABRE EL MODAL PODIO
                     modalRanking.style.display = "flex";
                 }
